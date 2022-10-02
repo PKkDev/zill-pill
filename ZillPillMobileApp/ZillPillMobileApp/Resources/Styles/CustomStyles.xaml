@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Style TargetType="{x:Type Label}">
+        <Setter Property="TextColor" Value="#000000" />
+        <Setter Property="FontFamily" Value="NunitoRegular" />
+        <Setter Property="FontSize" Value="15" />
+    </Style>
+
+    <Style TargetType="{x:Type Entry}">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="FontFamily" Value="NunitoRegular"/>
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="PlaceholderColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray500}}" />
+    </Style>
+
+    <Style TargetType="{x:Type Button}">
+        <Setter Property="TextColor" Value="{StaticResource Secondary}" />
+        <Setter Property="BackgroundColor" Value="{StaticResource PrimaryColorMy}" />
+        <Setter Property="FontFamily" Value="NunitoRegular"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="CornerRadius" Value="8"/>
+        <Setter Property="Padding" Value="14,10"/>
+    </Style>
+
+    <Style TargetType="{x:Type Page}" ApplyToDerivedTypes="True">
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="BackgroundColor" Value="{StaticResource PageBackColor}" />
+    </Style>
+
+    <!--
+
+    <Style TargetType="{x:Type Shell}" ApplyToDerivedTypes="True">
+
+        <Setter Property="Shell.BackgroundColor" Value="#512BD4" />
+        <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
+        <Setter Property="Shell.ForegroundColor" Value="#fff" />
+        <Setter Property="Shell.TitleColor" Value="#fff" />
+        <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
+
+        <Setter Property="Shell.TabBarBackgroundColor" Value="#252836" />
+        <Setter Property="Shell.TabBarDisabledColor" Value="#B4FFFFFF" />
+        <Setter Property="Shell.TabBarForegroundColor" Value="#fff"/>
+        <Setter Property="Shell.TabBarTitleColor" Value="#6FCF97"/>
+        <Setter Property="Shell.TabBarUnselectedColor" Value="#828282"/>
+
+    </Style>
+
+    <Style TargetType="{x:Type NavigationPage}">
+        <Setter Property="BarBackgroundColor" Value="#512BD4" />
+        <Setter Property="BarTextColor" Value="#C8C8C8" />
+        <Setter Property="IconColor" Value="#C8C8C8" />
+    </Style>-->
+
+    <Style TargetType="{x:Type Frame}" x:Key="CardFrame">
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="CornerRadius" Value="5"/>
+        <Setter Property="Padding" Value="5"/>
+    </Style>
+
+    <Style TargetType="{x:Type Label}" x:Key="CardLabel">
+        <Setter Property="Margin" Value="0,2"/>
+        <Setter Property="FontSize" Value="15"/>
+    </Style>
+
+</ResourceDictionary>

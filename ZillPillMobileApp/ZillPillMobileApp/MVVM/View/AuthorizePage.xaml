@@ -1,0 +1,108 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ZillPillMobileApp.MVVM.View.AuthorizePage"
+             Title="AuthorizePage"
+             Shell.NavBarIsVisible="False"
+             Shell.FlyoutBehavior="Disabled"
+             Shell.FlyoutItemIsVisible="False">
+
+    <Grid x:Name="GridBase">
+
+        <VisualStateManager.VisualStateGroups>
+
+            <VisualStateGroup x:Name="CodeState">
+
+                <VisualState x:Name="CodeView">
+
+                    <VisualState.Setters>
+                        <Setter TargetName="PhoneEntryGroup"  Property="Frame.IsVisible" Value="false"/>
+                        <Setter TargetName="GetCodeBtn"  Property="Button.IsVisible" Value="false"/>
+
+                        <Setter TargetName="CodeEntryGroup"  Property="Frame.IsVisible" Value="true"/>
+                        <Setter TargetName="CheckCodeBtn"  Property="Button.IsVisible" Value="true"/>
+                    </VisualState.Setters>
+
+                </VisualState>
+
+                <VisualState x:Name="PhoneView">
+
+                    <VisualState.Setters>
+                        <Setter TargetName="PhoneEntryGroup"  Property="Frame.IsVisible" Value="true"/>
+                        <Setter TargetName="GetCodeBtn"  Property="Button.IsVisible" Value="true"/>
+
+                        <Setter TargetName="CodeEntryGroup"  Property="Frame.IsVisible" Value="false"/>
+                        <Setter TargetName="CheckCodeBtn"  Property="Button.IsVisible" Value="false"/>
+                    </VisualState.Setters>
+
+                </VisualState>
+
+            </VisualStateGroup>
+
+        </VisualStateManager.VisualStateGroups>
+
+        <StackLayout Margin="20" Orientation="Vertical">
+
+
+            <Image Source="pill.png" HeightRequest="150" HorizontalOptions="Center"/>
+
+            <StackLayout Margin="0, 20">
+
+                <Label FontSize="32" Text="Welcome back"/>
+                <Label Text="Authorize for continue"/>
+            </StackLayout>
+
+
+            <StackLayout>
+
+                <StackLayout Orientation="Horizontal" Margin="0,0,0,5" x:Name="PhoneEntryGroup">
+
+                    <Frame Padding="0" HasShadow="True" BorderColor="#fff" HeightRequest="56" WidthRequest="56" CornerRadius="26">
+                        <Image Margin="0,0,2,0"  HeightRequest="30" WidthRequest="30" Source="phone.svg"/>
+                    </Frame>
+
+
+                    <Frame Padding="0" HasShadow="True" BorderColor="#fff" HeightRequest="40" Margin="-15,0,0,0" HorizontalOptions="FillAndExpand">
+                        <Entry Margin="20,0,0,0" Text="{Binding Phone}" Keyboard="Telephone" Placeholder="Phone"/>
+                    </Frame>
+
+
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Margin="0,0,0,5" x:Name="CodeEntryGroup">
+
+                    <Frame Padding="0" HasShadow="True" BorderColor="#fff" HeightRequest="50" WidthRequest="56" CornerRadius="26">
+                        <Image Margin="0,0,2,0"  HeightRequest="30" WidthRequest="30" Source="code.svg"/>
+                    </Frame>
+
+
+                    <Frame Padding="0" HasShadow="True" BorderColor="#fff" HeightRequest="35" Margin="-15,0,0,0" HorizontalOptions="FillAndExpand">
+                        <Entry VerticalOptions="Center" Margin="20,0,0,0" Text="{Binding Code}" Keyboard="Numeric" Placeholder="Code"/>
+                    </Frame>
+
+
+                </StackLayout>
+
+            </StackLayout>
+
+            <Button x:Name="GetCodeBtn"
+                    Command="{Binding GetCodeCommand}" 
+                    Margin="0, 15"
+                    Text="Get code"/>
+
+            <Button x:Name="CheckCodeBtn" 
+                    Command="{Binding CheckCodeCommand}" 
+                    Margin="0, 15"
+                    Text="Check code">
+            </Button>
+
+            <ImageButton HeightRequest="50" 
+                         Source="touch_id.png"
+                         Command="{Binding FingerLogInCommand}" />
+
+            <ActivityIndicator IsRunning="{Binding LogInPocessing}" Color="Green" />
+
+        </StackLayout>
+
+    </Grid>
+
+</ContentPage>

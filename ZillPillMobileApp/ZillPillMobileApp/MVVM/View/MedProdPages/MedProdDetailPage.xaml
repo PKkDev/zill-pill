@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ZillPillMobileApp.MVVM.View.MedProdPages.MedProdDetailPage"
+             xmlns:pageState="clr-namespace:ZillPillMobileApp.Templates.PageState"
+             xmlns:preLoad="clr-namespace:ZillPillMobileApp.Templates.Preloading"
+             Title="Детализация">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IconOverride="backspace.svg" IsVisible="True" Command="{Binding BackCommand}"/>
+    </Shell.BackButtonBehavior>
+
+    <pageState:StateContainer State="{Binding PageState}" x:Name="pageStateContainer">
+
+        <pageState:StateCondition State="Loading">
+
+            <StackLayout Orientation="Vertical" Padding="5">
+                <StackLayout>
+                    <StackLayout>
+                        <preLoad:PreloadingBoxView HorizontalOptions="Center" HeightRequest="20" WidthRequest="70" Margin="0,5" BackgroundColor="#95a5a6"/>
+                    </StackLayout>
+                    <preLoad:PreloadingBoxView HeightRequest="50" Margin="0,5" BackgroundColor="#95a5a6"/>
+                    <preLoad:PreloadingBoxView HeightRequest="50" Margin="0,5" BackgroundColor="#95a5a6"/>
+                </StackLayout>
+                <StackLayout>
+                    <StackLayout>
+                        <preLoad:PreloadingBoxView HorizontalOptions="Center" HeightRequest="20" WidthRequest="70" Margin="0,5" BackgroundColor="#95a5a6"/>
+                    </StackLayout>
+                    <preLoad:PreloadingBoxView HeightRequest="50" Margin="0,5" BackgroundColor="#95a5a6"/>
+                </StackLayout>
+                <StackLayout>
+                    <StackLayout>
+                        <preLoad:PreloadingBoxView HorizontalOptions="Center" HeightRequest="20" WidthRequest="70" Margin="0,5" BackgroundColor="#95a5a6"/>
+                    </StackLayout>
+                    <preLoad:PreloadingBoxView HeightRequest="50" Margin="0,5" BackgroundColor="#95a5a6"/>
+                    <preLoad:PreloadingBoxView HeightRequest="50" Margin="0,5" BackgroundColor="#95a5a6"/>
+                    <preLoad:PreloadingBoxView HeightRequest="50" Margin="0,5" BackgroundColor="#95a5a6"/>
+                </StackLayout>
+            </StackLayout>
+
+        </pageState:StateCondition>
+
+        <pageState:StateCondition State="Normal">
+
+            <ScrollView>
+
+                <StackLayout>
+
+                    <Frame Style="{StaticResource CardFrame}">
+
+                        <StackLayout>
+                            <Label Style="{StaticResource CardLabel}" 
+                                   FontSize="20"
+                                   Text="{Binding ProductDetail.Name}" 
+                                   HorizontalOptions="Center" />
+                        </StackLayout>
+
+                    </Frame>
+
+                    <Frame Style="{StaticResource CardFrame}">
+
+                        <StackLayout>
+
+                            <Label Style="{StaticResource CardLabel}" Text="Лицензия" HorizontalOptions="Center" />
+
+                            <Label Text="{Binding ProductDetail.Certificate.License}"/>
+                            <Label Text="{Binding ProductDetail.Certificate.RegisterDate}"/>
+                            <Label Text="{Binding ProductDetail.Certificate.Approved}"/>
+                        </StackLayout>
+
+                    </Frame>
+
+                    <Frame Style="{StaticResource CardFrame}">
+
+                        <StackLayout>
+
+                            <Label Style="{StaticResource CardLabel}" Text="Характеристики" HorizontalOptions="Center" />
+
+                            <Label Text="{Binding ProductDetail.Characteristics}"/>
+                        </StackLayout>
+
+                    </Frame>
+
+                    <Frame Style="{StaticResource CardFrame}">
+
+                        <StackLayout>
+
+                            <Label Style="{StaticResource CardLabel}" Text="Формы выпуска" HorizontalOptions="Center" />
+
+                            <CollectionView ItemsSource="{Binding ProductDetail.Releases}" SelectionMode="None">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Label Margin="0,0,0,5" Padding="10,0" VerticalOptions="Center" LineBreakMode="WordWrap" Text="{Binding .}"/>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+
+                        </StackLayout>
+
+                    </Frame>
+
+                    <Frame Style="{StaticResource CardFrame}">
+
+                        <StackLayout>
+
+                            <Label Style="{StaticResource CardLabel}" Text="Состав" HorizontalOptions="Center" />
+
+                            <CollectionView ItemsSource="{Binding ProductDetail.Chemicals}" SelectionMode="None">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Label Margin="0,0,0,5" Padding="10,0" VerticalOptions="Center" LineBreakMode="WordWrap" Text="{Binding .}"/>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+
+                        </StackLayout>
+
+                    </Frame>
+
+                    <HorizontalStackLayout>
+
+                        <ImageButton  BorderColor="Black" BorderWidth="1" CornerRadius="5"
+                                      HeightRequest="60"  WidthRequest="60"
+                                      Margin="0" Padding="5"
+                                      Aspect="AspectFill" Source="vita.svg" Command="{Binding OpenWebVita}"/>
+
+                        <ImageButton BorderColor="Black" BorderWidth="1" CornerRadius="5"
+                                     HeightRequest="60" WidthRequest="60"
+                                     Margin="0" Padding="5"
+                                     Aspect="AspectFill" Source="yandex.png" Command="{Binding OpenWebYandex}"/>
+
+                    </HorizontalStackLayout>
+
+                </StackLayout>
+
+            </ScrollView>
+
+        </pageState:StateCondition>
+
+    </pageState:StateContainer>
+
+</ContentPage >

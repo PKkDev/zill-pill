@@ -1,0 +1,17 @@
+﻿{
+  "SmsAreaSettings": {
+    "User": "prodevkir@mail.ru",
+    "Pass": "bX2KWyrQXCu4ujDnccUL9sKq25e",
+    "BaseUrl": "https://gate.smsaero.ru/v2/sms/send"
+  },
+  "AuthOptions": {
+    "TokenKey": "!key_super_secret_secret_key!123",
+    "Issuer": "AuthServer",
+    "Audience": "miiilkShaaaake",
+    "LifeTime": "1440"
+  },
+  "TelegramConfig": {
+    "ChatId": "-658853642",
+    "BaseUrl": "https://u0901873.plsk.regruhosting.ru/TelegramBot/telegram/send-message"
+  }
+}

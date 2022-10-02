@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31611.283
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZillPillMobileApp", "ZillPillMobileApp\ZillPillMobileApp.csproj", "{B774C6A6-983D-4C43-9F4C-9E5B532D3A0B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZillPillMobileApp.Domain", "ZillPillMobileApp.Domain\ZillPillMobileApp.Domain.csproj", "{7AA9EA8C-551D-422F-A5D2-A5C528E3A494}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B774C6A6-983D-4C43-9F4C-9E5B532D3A0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B774C6A6-983D-4C43-9F4C-9E5B532D3A0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B774C6A6-983D-4C43-9F4C-9E5B532D3A0B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{B774C6A6-983D-4C43-9F4C-9E5B532D3A0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B774C6A6-983D-4C43-9F4C-9E5B532D3A0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B774C6A6-983D-4C43-9F4C-9E5B532D3A0B}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{7AA9EA8C-551D-422F-A5D2-A5C528E3A494}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AA9EA8C-551D-422F-A5D2-A5C528E3A494}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AA9EA8C-551D-422F-A5D2-A5C528E3A494}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AA9EA8C-551D-422F-A5D2-A5C528E3A494}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {61F7FB11-1E47-470C-91E2-47F8143E1572}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell x:Class="ZillPillMobileApp.AppShell"
+       xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:sys="clr-namespace:System;assembly=netstandard"
+       xmlns:view="clr-namespace:ZillPillMobileApp.MVVM.View"
+       xmlns:aboutView="clr-namespace:ZillPillMobileApp.MVVM.View.AboutPages"
+       xmlns:medProdView="clr-namespace:ZillPillMobileApp.MVVM.View.MedProdPages"
+       xmlns:sheduller="clr-namespace:ZillPillMobileApp.MVVM.View.ShedullerPages"
+       Shell.FlyoutBehavior="Disabled">
+
+    <Shell.FlyoutHeader>
+        <Grid BackgroundColor="#34495e">
+            <Label Text="Menu" 
+                   TextColor="#fff" 
+                   FontAttributes="Bold" 
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center" />
+        </Grid>
+    </Shell.FlyoutHeader>
+
+    <Shell.ItemTemplate>
+        <DataTemplate>
+            <Grid ColumnDefinitions="0.2*,0.8*">
+                <Image Source="{Binding FlyoutIcon}" Margin="5" HeightRequest="45" />
+                <Label Grid.Column="1" Text="{Binding Title}" FontSize="Medium" VerticalTextAlignment="Center" />
+            </Grid>
+        </DataTemplate>
+    </Shell.ItemTemplate>
+
+    <Shell.MenuItemTemplate>
+        <DataTemplate>
+            <Grid ColumnDefinitions="0.2*,0.8*">
+                <Image Source="{Binding Icon}" Margin="5" HeightRequest="45" />
+                <Label Grid.Column="1" Text="{Binding Text}" FontSize="Medium" VerticalTextAlignment="Center" />
+            </Grid>
+        </DataTemplate>
+    </Shell.MenuItemTemplate>
+
+    <Shell.FlyoutFooter>
+        <StackLayout>
+            <Label Text="Kirill"
+                   TextColor="Black"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" />
+            <Label Text="{Binding Source={x:Static sys:DateTime.Today}, StringFormat='{0:dd, MMMM, yyyy}'}"
+                   TextColor="Black"
+                   HorizontalOptions="Center" />
+        </StackLayout>
+    </Shell.FlyoutFooter>
+
+    <FlyoutItem Title="LogIn">
+        <ShellContent Route="LogInPage" ContentTemplate="{DataTemplate view:AuthorizePage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="MedProdList">
+        <ShellContent Route="MedProdListPage" ContentTemplate="{DataTemplate medProdView:MedProdListPage}" />
+    </FlyoutItem>
+
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+
+        <Tab Title="Настроки" Icon="gear.svg" Shell.NavBarIsVisible="False">
+
+            <ShellContent Title="Пользователь"
+                          ContentTemplate="{DataTemplate aboutView:UserPage}" />
+
+            <ShellContent Title="Помощь"
+                          ContentTemplate="{DataTemplate aboutView:HelpPage}" />
+
+        </Tab>
+
+        <ShellContent Title="Препараты"
+                      Icon="capsule_pill.svg"
+                      Route="UserMedProdListPage" 
+                      ContentTemplate="{DataTemplate medProdView:UserMedProdPage}" />
+
+        <ShellContent Title="Календарь"
+                      Icon="calendar.svg"
+                      Route="Calendr" 
+                      ContentTemplate="{DataTemplate sheduller:CalendarPage}" />
+
+    </FlyoutItem>
+
+    <MenuItem Text="Выйти" Clicked="LogOut_Clicked" StyleClass="MenuItemLayoutStyle"/>
+
+</Shell>

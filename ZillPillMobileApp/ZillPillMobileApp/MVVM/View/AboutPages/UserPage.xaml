@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ZillPillMobileApp.MVVM.View.AboutPages.UserPage">
+
+    <RefreshView IsRefreshing="{Binding IsRefreshing}"
+                 Command="{Binding RefreshCommand}"
+                 RefreshColor="#27ae60">
+
+        <ScrollView  Padding="5">
+
+            <Grid ColumnDefinitions="*" RowDefinitions="*,*,*,150">
+
+                <Frame Grid.Column="0" Grid.Row="0" Style="{StaticResource CardFrame}">
+
+                    <VerticalStackLayout>
+                        <Label Text="Телефон" HorizontalOptions="Center"/>
+                        <Label Text="{Binding UserDetail.Phone}" HorizontalOptions="Start" />
+                    </VerticalStackLayout>
+
+                </Frame>
+
+                <Frame Grid.Column="0" Grid.Row="1" Style="{StaticResource CardFrame}">
+
+                    <VerticalStackLayout>
+                        <Label Text="Email" HorizontalOptions="Center"/>
+                        <Label Text="{Binding UserDetail.Email}" HorizontalOptions="Start" />
+                    </VerticalStackLayout>
+
+                </Frame>
+
+                <Frame Grid.Column="0" Grid.Row="2" Style="{StaticResource CardFrame}">
+
+                    <VerticalStackLayout>
+                        <Label Text="Имя польователя" HorizontalOptions="Center"/>
+                        <Label Text="{Binding UserDetail.FirstName}" HorizontalOptions="Start" />
+                    </VerticalStackLayout>
+
+                </Frame>
+
+                <Frame Grid.Column="0" Grid.Row="3" Style="{StaticResource CardFrame}">
+
+                    <VerticalStackLayout>
+                        <Label Text="Подписка" HorizontalOptions="Center"/>
+
+                        <Grid RowDefinitions="*,*" ColumnDefinitions="*,*">
+
+                            <Label Grid.Row="0" Grid.Column="0" VerticalTextAlignment="Center" 
+                                   Text="Систмные уведомления"/>
+                            <Switch x:Name="SystemNotifSwitch" Grid.Row="0" Grid.Column="1" 
+                                    Toggled="SystemNotifSwitch_Toggled"/>
+
+                            <Label Grid.Row="1" Grid.Column="0" VerticalTextAlignment="Center" 
+                                   Text="Уведомления о приёме лекарств"/>
+                            <Switch x:Name="ShedullerNotifSwitch" Grid.Row="1" Grid.Column="1" 
+                                    Toggled="ShedullerNotifSwitch_Toggled"/>
+
+                        </Grid>
+
+                    </VerticalStackLayout>
+
+                </Frame>
+
+            </Grid>
+
+        </ScrollView>
+
+    </RefreshView>
+
+</ContentPage>

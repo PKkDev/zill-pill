@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ZillPillMobileApp.MVVM.View.AboutPages.HelpPage">
+
+    <StackLayout Padding="5">
+
+        <Frame Style="{StaticResource CardFrame}" 
+               FlexLayout.Grow="1">
+
+            <StackLayout>
+
+                <Label Style="{StaticResource CardLabel}" 
+                       Text="Подключение к интернету:" />
+
+                <Label Style="{StaticResource CardLabel}" 
+                       Text="{Binding NetworkState}" />
+
+                <Button Text="Проверить" 
+                        Margin="0,10,0,0"
+                        Padding="5"
+                        Command="{Binding CheckNetwork}"/>
+
+            </StackLayout>
+
+        </Frame>
+
+        <Frame Style="{StaticResource CardFrame}" 
+               FlexLayout.Grow="1">
+
+            <StackLayout>
+
+                <Grid ColumnDefinitions="*,*" RowDefinitions="*,*,*,*">
+
+                    <Label Style="{StaticResource CardLabel}" Grid.Row="0" Grid.Column="0" Text="Приложение:"/>
+                    <Label Style="{StaticResource CardLabel}" Grid.Row="0" Grid.Column="1" Text="{Binding AppName}"/>
+
+                    <Label Style="{StaticResource CardLabel}" Grid.Row="1" Grid.Column="0" Text="Пакет:"/>
+                    <Label Style="{StaticResource CardLabel}" Grid.Row="1" Grid.Column="1" Text="{Binding PackageName}"/>
+
+                    <Label Style="{StaticResource CardLabel}" Grid.Row="2" Grid.Column="0" Text="Версия:" />
+                    <Label Style="{StaticResource CardLabel}" Grid.Row="2" Grid.Column="1" Text="{Binding Version}" />
+
+                    <Label Style="{StaticResource CardLabel}" Grid.Row="3" Grid.Column="0" Text="Сборка:" />
+                    <Label Style="{StaticResource CardLabel}" Grid.Row="3" Grid.Column="1" Text="{Binding Build}"/>
+
+                </Grid>
+
+                <Button Text="О приложении" 
+                        Margin="0,10,0,0"
+                        Padding="5"
+                        Command="{Binding OnShowSettingsUI}"/>
+
+            </StackLayout>
+
+        </Frame>
+
+        <Frame Margin="0" Padding="10" Style="{StaticResource CardFrame}">
+
+            <VerticalStackLayout>
+
+                <Label Text="Самарский университет" VerticalOptions="Center" HorizontalOptions="Center" />
+
+                <BoxView BackgroundColor="Transparent" HeightRequest="5"></BoxView>
+
+                <Label Text="Кафедра программных систем" VerticalOptions="Center"  HorizontalOptions="Center" />
+
+                <BoxView BackgroundColor="Transparent" HeightRequest="5"></BoxView>
+
+                <Label Text="Курсовой проект по дисциплине 'Современные методы РиП ПК'" VerticalOptions="Center"  HorizontalOptions="Center" />
+
+                <BoxView BackgroundColor="Transparent" HeightRequest="10"></BoxView>
+
+                <Label Text="Тема проекта: 'Мобильное приложение для поиска лекарств из открытых источников и напоминания об их приёме'"
+                       VerticalOptions="Center" 
+                       HorizontalOptions="Center" />
+
+                <BoxView BackgroundColor="Transparent" HeightRequest="10"></BoxView>
+
+                <Label Text="Разработчики студенты группы 6132-020302D"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center" />
+
+                <Label Text="Портнов К. А."
+                       VerticalOptions="Center" 
+                       HorizontalOptions="End" />
+
+                <Label Text="Хорина В. И."
+                       VerticalOptions="Center" 
+                       HorizontalOptions="End" />
+
+                <BoxView BackgroundColor="Transparent" HeightRequest="5"></BoxView>
+
+                <Label Text="2022 г" VerticalOptions="Center" HorizontalOptions="Center" />
+
+            </VerticalStackLayout>
+
+        </Frame>
+
+    </StackLayout>
+
+</ContentPage>

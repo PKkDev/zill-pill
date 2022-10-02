@@ -1,0 +1,5 @@
+{
+  "ConnectionStrings": {
+    "AppConnectionString": "Server=37.140.192.97,1433;Database=u0901873_zilpill;User Id=u0901873_zilpill_admin;Password=95Q1me?n9;Encrypt=False"
+  }
+}

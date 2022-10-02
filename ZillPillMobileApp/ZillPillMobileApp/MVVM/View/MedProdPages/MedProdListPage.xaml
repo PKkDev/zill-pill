@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ZillPillMobileApp.MVVM.View.MedProdPages.MedProdListPage"
+             xmlns:model="clr-namespace:ZillPillMobileApp.MVVM.Model"
+             x:Name="MyMedProdListPage"
+             Title="Препараты">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IconOverride="backspace.svg" IsVisible="True" Command="{Binding BackCommand}"/>
+    </Shell.BackButtonBehavior>
+
+    <VerticalStackLayout>
+
+        <SearchBar x:Name="searchBar" 
+                   Margin="5,5"
+                   Placeholder="Поиск"
+                   BackgroundColor="#fff"
+                   SearchCommand="{Binding PerformSearch}"
+                   SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"/>
+
+        <RefreshView Command="{Binding RefreshItemsCommand}" 
+                     RefreshColor="#27ae60"
+                     IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+
+            <CollectionView ItemsSource="{Binding MedProducts}"
+                            SelectionMode="None"
+                            ItemsLayout="VerticalList"
+                            RemainingItemsThreshold="2"
+                            RemainingItemsThresholdReachedCommand="{Binding LoadMoreItemsCommand}">
+
+                <CollectionView.EmptyView>
+                    <ContentView>
+                        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
+                            <Label Text="Ничего не найдено"
+                                   Margin="10,25,10,10"
+                                   FontAttributes="Bold"
+                                   FontSize="18"
+                                   HorizontalOptions="Fill"
+                                   HorizontalTextAlignment="Center" />
+                        </StackLayout>
+                    </ContentView>
+                </CollectionView.EmptyView>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <SwipeView>
+
+                            <SwipeView.LeftItems>
+                                <SwipeItems Mode="Reveal">
+                                    <SwipeItem IconImageSource="add.svg"
+                                               BackgroundColor="#ffb300"
+                                               Command="{Binding Path=BindingContext.AddToUserCommand, Source={x:Reference Name=MyMedProdListPage}}" 
+                                               CommandParameter="{Binding .}"/>
+                                </SwipeItems>
+                            </SwipeView.LeftItems>
+
+                            <SwipeView.RightItems>
+                                <SwipeItems Mode="Reveal">
+                                    <SwipeItem IconImageSource="detail.svg"
+                                               BackgroundColor="#ffb300"
+                                               Command="{Binding Path=BindingContext.ViewDetailCommand, Source={x:Reference Name=MyMedProdListPage}}" 
+                                               CommandParameter="{Binding .}"/>
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+
+                            <Frame Style="{StaticResource CardFrame}" IsClippedToBounds="True">
+
+                                <StackLayout Orientation="Vertical" VerticalOptions="End"
+                                             Spacing="0" Margin="5" Padding="25,0,0,0">
+
+                                    <StackLayout Orientation="Horizontal">
+
+                                        <Frame CornerRadius="5" Margin="5" Padding="0" IsClippedToBounds="True">
+                                            <Image WidthRequest="60" HeightRequest="50"
+                                                   Aspect="AspectFill" 
+                                                   Source="{Binding ImageSource}"/>
+                                        </Frame>
+
+                                        <StackLayout Orientation="Vertical" VerticalOptions="Center">
+
+                                            <Label Text="{Binding Name}" 
+                                                   LineBreakMode="NoWrap" 
+                                                   FontAttributes="Bold" 
+                                                   TextColor="#000" 
+                                                   FontSize="18" />
+
+                                        </StackLayout>
+
+                                    </StackLayout>
+
+                                </StackLayout>
+
+                            </Frame>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+
+        </RefreshView>
+
+    </VerticalStackLayout>
+
+</ContentPage>

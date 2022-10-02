@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "215384741728",
+    "project_id": "zill-pill-v2",
+    "storage_bucket": "zill-pill-v2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:215384741728:android:38d220e361a8a603c63005",
+        "android_client_info": {
+          "package_name": "com.companyname.zillpillmobileapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "215384741728-5luae06qvhueo9ofimq8sn2632iu9g6v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCu7RD48eL_P9Q-OVB9vRN5M4v11gBHLHM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "215384741728-5luae06qvhueo9ofimq8sn2632iu9g6v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
