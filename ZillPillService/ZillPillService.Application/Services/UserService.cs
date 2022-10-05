@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.WebUtilities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using ZillPillService.Domain.DTO.User;
 using ZillPillService.Domain.Exceptions;
+using ZillPillService.Domain.Query.User;
 using ZillPillService.Infrastructure.Context;
 using ZillPillService.Infrastructure.Entities;
 using ZillPillService.Infrastructure.ServicesContract;
@@ -145,6 +145,49 @@ namespace ZillPillService.Application.Services
                 FirstName = user.Profile.FirstName
             };
             return result;
+        }
+
+        /// <summary>
+        /// update user detail
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="query"></param>
+        /// <param name="ct"></param>
+        /// <returns></returns>
+        /// <exception cref="ApiException"></exception>
+        public async Task UpdateUserDetailAsync(int userId, UpdateUserDetailQuery query, CancellationToken ct)
+        {
+            var user = await _context.User
+                .Include(x => x.Profile)
+                .FirstOrDefaultAsync(x => x.Id == userId);
+
+            if (user == null)
+                throw new ApiException("user not found");
+
+            user.Profile.Email = query.Email;
+            user.Profile.FirstName = query.FirstName;
+
+            _context.User.Update(user);
+            await _context.SaveChangesAsync(ct);
+        }
+
+        /// <summary>
+        /// delete user
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="ct"></param>
+        /// <returns></returns>
+        /// <exception cref="ApiException"></exception>
+        public async Task DeleteUserAsync(int userId, CancellationToken ct)
+        {
+            var user = await _context.User
+                .FirstOrDefaultAsync(x => x.Id == userId);
+
+            if (user == null)
+                throw new ApiException("user not found");
+
+            _context.User.Remove(user);
+            await _context.SaveChangesAsync(ct);
         }
     }
 }

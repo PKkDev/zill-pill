@@ -2,6 +2,7 @@
 using ZillPillService.Domain.DTO.MedicalProduct;
 using ZillPillService.Domain.DTO.Shedullers;
 using ZillPillService.Domain.Exceptions;
+using ZillPillService.Domain.Query;
 using ZillPillService.Domain.Query.User;
 using ZillPillService.Infrastructure.Context;
 using ZillPillService.Infrastructure.Entities;
@@ -19,10 +20,33 @@ namespace ZillPillService.Application.Services
         }
 
         public async Task<List<MedicalProductDto>> GetMedicalProductsListAsync(
-            int offset, int limit, CancellationToken ct)
+            GetFilteredMedicalProductQuery filter, int offset, int limit, CancellationToken ct)
         {
-            var entities = await _context.MedicinalProduct
+            var query = _context.MedicinalProduct
+                .Include(x => x.Chemicals)
+                .Include(x => x.Certificate)
                 .Include(x => x.Image)
+                .OrderByDescending(x => x.Id)
+                .AsQueryable();
+
+            if (filter.CountryId is Int32 countryId)
+                query = query.Where(x => x.CountryDictionaryId == countryId);
+
+            if (filter.ProductName is String productName)
+                query = query.Where(x => x.Name.ToLower().Contains(productName.ToLower()));
+
+            if (filter.WithCertificate is bool withCertificate)
+            {
+                if (withCertificate)
+                    query = query.Where(x => x.Certificate.Approved.Equals("зарегистрировано"));
+                else
+                    query = query.Where(x => !x.Certificate.Approved.Equals("зарегистрировано"));
+            }
+
+            if (filter.ChemicalName is String chemicalName)
+                query = query.Where(x => x.Chemicals.Any(y => y.Name.ToLower().Contains(chemicalName.ToLower())));
+
+            var entities = await query
                 .Skip(offset)
                 .Take(limit)
                 .Select(x => new MedicalProductDto(x.Id, x.Name, x.Image.Data))
@@ -67,6 +91,18 @@ namespace ZillPillService.Application.Services
                 .ThenInclude(y => y.Image)
                 .Select(x => new UserMedicalProductDto(x.MedicinalProduct.Id, x.MedicinalProduct.Name, x.MedicinalProduct.Image.Data, x.Id))
                 .ToListAsync(ct);
+
+            foreach (var entity in entities)
+            {
+                var totalShedullers = await _context.MedicationSheduller
+                    .Where(x => x.UserMedicinalProductId == entity.RelationId)
+                    .Select(x => x.IsAccepted)
+                    .ToListAsync(ct);
+
+                entity.TotalToAccept = totalShedullers.Count();
+                entity.TotalAccepted = totalShedullers.Count(x => x);
+                entity.Progress = entity.TotalToAccept != 0 ? (double)entity.TotalAccepted / entity.TotalToAccept : 0.0;
+            }
 
             return entities;
         }
@@ -169,12 +205,16 @@ namespace ZillPillService.Application.Services
             entity.ShedullerType = query.ShedullerType;
             entity.DateEnd = query.DateEnd;
             entity.DateStart = query.DateStart;
-            entity.Shedullers = query.ShedullerItems.Select(x => new MedicationSheduller()
-            {
-                Date = x.Date,
-                Time = x.Time,
-                Quantity = x.Quantity
-            }).ToList();
+            entity.Shedullers = query.ShedullerItems
+                .Select(x => new MedicationSheduller()
+                {
+                    Date = x.Date,
+                    Time = x.Time,
+                    Quantity = x.Quantity,
+                    IsAccepted = DateTime.Today > x.Date,
+                    IsSended = DateTime.Today > x.Date,
+                    UnionUtcDate = x.Date.Add(x.Time).ToUniversalTime(),
+                }).ToList();
 
             _context.UserMedicinalProduct.Update(entity);
             await _context.SaveChangesAsync(ct);

@@ -67,5 +67,32 @@ namespace ZillPillService.API.Controllers
             var userId = HttpContext.GetUserId();
             return await _service.GetUserDetailAsync(userId, ct);
         }
+
+        /// <summary>
+        /// update user detail
+        /// </summary>
+        /// <param name="query"></param>
+        /// <param name="ct"></param>
+        /// <returns></returns>
+        [HttpPost("detail")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task UpdateUserDetail([FromBody] UpdateUserDetailQuery query, CancellationToken ct = default)
+        {
+            var userId = HttpContext.GetUserId();
+            await _service.UpdateUserDetailAsync(userId, query, ct);
+        }
+
+        /// <summary>
+        /// delete user
+        /// </summary>
+        /// <param name="ct"></param>
+        /// <returns></returns>
+        [HttpDelete]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task DeleteUser(CancellationToken ct = default)
+        {
+            var userId = HttpContext.GetUserId();
+            await _service.DeleteUserAsync(userId, ct);
+        }
     }
 }

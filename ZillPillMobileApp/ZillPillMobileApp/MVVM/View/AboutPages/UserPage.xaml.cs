@@ -1,5 +1,8 @@
-using Firebase.Messaging;
 using ZillPillMobileApp.MVVM.ViewModel;
+
+#if ANDROID
+using Firebase.Messaging;
+#endif
 
 namespace ZillPillMobileApp.MVVM.View.AboutPages;
 
@@ -19,10 +22,12 @@ public partial class UserPage : ContentPage
 
     private void SystemNotifSwitch_Toggled(object sender, ToggledEventArgs e)
     {
+#if ANDROID
         if (SystemNotifSwitch.IsToggled)
             FirebaseMessaging.Instance.SubscribeToTopic($"system");
         else
             FirebaseMessaging.Instance.UnsubscribeFromTopic($"system");
+#endif
 
         Preferences.Default.Set("SystemNotifSwitch", SystemNotifSwitch.IsToggled);
     }
@@ -32,10 +37,12 @@ public partial class UserPage : ContentPage
         var phone = SecureStorage.GetAsync("phone");
         var phoneRes = phone.Result;
 
+#if ANDROID
         if (SystemNotifSwitch.IsToggled)
             FirebaseMessaging.Instance.SubscribeToTopic($"sheduller_{phoneRes}");
         else
             FirebaseMessaging.Instance.UnsubscribeFromTopic($"sheduller_{phoneRes}");
+#endif
 
         Preferences.Default.Set("ShedullerNotifSwitch", ShedullerNotifSwitch.IsToggled);
     }

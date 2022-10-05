@@ -2,6 +2,7 @@
 using System.Text;
 using ZillPillMobileApp.Domain.DTO.User;
 using ZillPillMobileApp.Domain.Query.User;
+using ZillPillMobileApp.MVVM.Model;
 
 namespace ZillPillMobileApp.Infrastructure.Services
 {
@@ -31,10 +32,6 @@ namespace ZillPillMobileApp.Infrastructure.Services
                 var response = await resp.Content.ReadAsStringAsync();
                 throw new Exception(response);
             }
-
-            //var query = new PhoneAuthorizeQuery(phone);
-            //var api = RestService.For<IUserApiContract>(_baseUrl.AbsoluteUri);
-            //await api.SendAccesTokenToSms(query);
         }
 
         public async Task<LoginResponseDto> CheckCodeForUserAsync(string phone, string code)
@@ -50,14 +47,9 @@ namespace ZillPillMobileApp.Infrastructure.Services
                 throw new Exception(response);
 
             return JsonConvert.DeserializeObject<LoginResponseDto>(response);
-
-            //var query = new CheckPhoneAuthorizeQuery(phone, code);
-            //var api = RestService.For<IUserApiContract>(_baseUrl.AbsoluteUri);
-            //var response = await api.CheckPhoneAccessToken(query);
-            //return response;
         }
 
-        public async Task<UserDetailDto> GetUserDetailAsync()
+        public async Task<UserDetailDtoModel> GetUserDetailAsync()
         {
             var client = new HttpClient(httpClientHandler);
             var token = await SecureStorage.GetAsync("token");
@@ -69,7 +61,32 @@ namespace ZillPillMobileApp.Infrastructure.Services
             if (!resp.IsSuccessStatusCode)
                 throw new Exception(response);
 
-            return JsonConvert.DeserializeObject<UserDetailDto>(response);
+            var dto = JsonConvert.DeserializeObject<UserDetailDto>(response);
+            return new(dto.Phone, dto.Email, dto.FirstName);
+        }
+
+        public async Task UpdateUserDetailAsync(UpdateUserDetailQuery query)
+        {
+            var client = new HttpClient(httpClientHandler);
+            var token = await SecureStorage.GetAsync("token");
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+            var json = JsonConvert.SerializeObject(query);
+            var data = new StringContent(json, Encoding.UTF8, "application/json");
+            var resp = await client.PostAsync(_baseUrl.AbsoluteUri + "/api/user/detail", data);
+
+            if (!resp.IsSuccessStatusCode)
+                throw new Exception(await resp.Content.ReadAsStringAsync());
+        }
+
+        public async Task DeleteUserAsync()
+        {
+            var client = new HttpClient(httpClientHandler);
+            var token = await SecureStorage.GetAsync("token");
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+            var resp = await client.DeleteAsync(_baseUrl.AbsoluteUri + "/api/user");
+
+            if (!resp.IsSuccessStatusCode)
+                throw new Exception(await resp.Content.ReadAsStringAsync());
         }
     }
 }

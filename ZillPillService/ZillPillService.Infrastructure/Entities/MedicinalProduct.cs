@@ -26,6 +26,9 @@ namespace ZillPillService.Infrastructure.Entities
         public List<User> Users { get; set; }
         public List<UserMedicinalProduct> UserMedicinalProduct { get; set; }
 
+        public int CountryDictionaryId { get; set; }
+        public CountryDictionary Country { get; set; }
+
         public MedicinalProduct()
         {
             Chemicals = new();

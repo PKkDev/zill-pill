@@ -161,7 +161,12 @@
                             <Grid ColumnDefinitions="2*,2*,*" RowDefinitions="*" ColumnSpacing="5" Margin="0,0,0,5">
 
                                 <Frame Grid.Column="0" Grid.Row="1" Padding="5,0" BackgroundColor="#6ec5ff" CornerRadius="10">
-                                    <TimePicker BackgroundColor="Transparent"  Format="HH:mm" Time="{Binding Time}"/>
+                                    <!--<TimePicker BackgroundColor="Transparent"  Format="HH:mm" Time="{Binding Time}"/>-->
+                                    <Button Text="{Binding Time}"
+                                            BackgroundColor="Transparent"
+                                            TextColor="#000"
+                                            CommandParameter="{Binding .}"
+                                            Command="{Binding Path=BindingContext.OpenTimePickerCommand, Source={x:Reference Name=SetShedullerPageName}}"/>
                                 </Frame>
 
                                 <Frame Grid.Column="1" Grid.Row="1" Padding="5,0" BackgroundColor="#6ec5ff" CornerRadius="10">

@@ -1,6 +1,6 @@
 ﻿namespace ZillPillMobileApp.Domain.DTO.User
 {
-    public class UserDetailDto
+    public class UserDetailDto 
     {
         public string Phone { get; set; }
         public string Email { get; set; }

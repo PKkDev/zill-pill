@@ -4,6 +4,6 @@ namespace ZillPillService.Infrastructure.ServicesContract
 {
     public interface INotificationService
     {
-        public Task SendAll(NotificationQuery message);
+        public Task SendAll(string topick, NotificationQuery message);
     }
 }

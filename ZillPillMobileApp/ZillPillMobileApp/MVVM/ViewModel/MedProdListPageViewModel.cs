@@ -84,7 +84,7 @@ namespace ZillPillMobileApp.MVVM.ViewModel
             try
             {
                 MedProducts.Clear();
-                var items = await _mpService.GetMedicalPoductListAsync(offset, limit);
+                var items = await _mpService.GetMedicalPoductListAsync(new(), offset, limit);
                 foreach (var item in items)
                     MedProducts.Add(item);
             }
@@ -103,7 +103,7 @@ namespace ZillPillMobileApp.MVVM.ViewModel
             try
             {
                 MedProducts.Clear();
-                var items = await _mpService.GetMedicalPoductListAsync(0, 5);
+                var items = await _mpService.GetMedicalPoductListAsync(new(), 0, 5);
                 foreach (var item in items)
                     MedProducts.Add(item);
             }
@@ -118,7 +118,7 @@ namespace ZillPillMobileApp.MVVM.ViewModel
             offset += 5;
             try
             {
-                var items = await _mpService.GetMedicalPoductListAsync(offset, limit);
+                var items = await _mpService.GetMedicalPoductListAsync(new(), offset, limit);
                 foreach (var item in items)
                     MedProducts.Add(item);
             }

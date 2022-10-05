@@ -76,7 +76,7 @@
 
         <ShellContent Title="Календарь"
                       Icon="calendar.svg"
-                      Route="Calendr" 
+                      Route="Calendar" 
                       ContentTemplate="{DataTemplate sheduller:CalendarPage}" />
 
     </FlyoutItem>

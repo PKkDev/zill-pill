@@ -27,11 +27,12 @@ builder.Services.AddTransient<IJwtGenerator, JwtGenerator>();
 builder.Services.AddTransient<IMedicalProductService, MedicalProductService>();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<INotificationService, NotificationService>();
+builder.Services.AddTransient<ICheckShedullerService, CheckShedullerService>();
 builder.Services.AddTransient<ErrorNotificationService>();
 
 #region FireBase
 
-using var stream = new FileStream("zillpill-inst-app-firebase-adminsdk-ab2lf-69ba0aa8cf.json", FileMode.Open, FileAccess.Read);
+using var stream = new FileStream("zill-pill-v2-firebase-adminsdk-hzxhi-01d0a1cc19.json", FileMode.Open, FileAccess.Read);
 FirebaseApp.Create(new AppOptions()
 {
     Credential = GoogleCredential.FromStream(stream)

@@ -1,15 +1,23 @@
-﻿using System.Collections.ObjectModel;
+﻿using CommunityToolkit.Maui.Views;
+using System.Collections.ObjectModel;
 using ZillPillMobileApp.Core;
 using ZillPillMobileApp.Domain;
 using ZillPillMobileApp.Infrastructure.Services;
 using ZillPillMobileApp.MVVM.Model;
+using ZillPillMobileApp.MVVM.Popups;
 using ZillPillMobileApp.Templates.PageState;
 
 namespace ZillPillMobileApp.MVVM.ViewModel
 {
-    public class ShedullerItem
+    public class ShedullerItem : ObservableObject
     {
-        public TimeSpan Time { get; set; }
+        private TimeSpan _time;
+        public TimeSpan Time
+        {
+            get { return _time; }
+            set { OnSetNewValue(ref _time, value); }
+        }
+
         public double Quantity { get; set; }
 
         public ShedullerItem()
@@ -55,6 +63,8 @@ namespace ZillPillMobileApp.MVVM.ViewModel
         public RelyCommand DoneCommand { get; set; }
 
         public RelyCommand DeleteShedItemCommand { get; set; }
+
+        public RelyCommand OpenTimePickerCommand { get; set; }
 
         private string _selectedType;
         public string SelectedType
@@ -104,12 +114,23 @@ namespace ZillPillMobileApp.MVVM.ViewModel
             set { OnSetNewValue(ref _shedullerData, value); }
         }
 
-        public SetShedullerPageViewModel(int relationId, StateContainer pageStack)
+        private Func<Popup, Task<object>> _showPopupAsync;
+
+        public SetShedullerPageViewModel(int relationId, StateContainer pageStack, Func<Popup, Task<object>> showPopupAsync)
         {
             _relationId = relationId;
             _pageStack = pageStack;
+            _showPopupAsync = showPopupAsync;
 
             Shedullers = new();
+
+            OpenTimePickerCommand = new(async (param) =>
+            {
+                var item = param as ShedullerItem;
+                var result = await _showPopupAsync(new TimePickerPopup(item.Time));
+                if (result is TimeSpan timeResult)
+                    item.Time = timeResult;
+            });
 
             ShedullerDayes = new() {
                 new ShedullerDay(DayOfWeek.Monday), new ShedullerDay(DayOfWeek.Tuesday),
@@ -182,6 +203,14 @@ namespace ZillPillMobileApp.MVVM.ViewModel
 
             DoneCommand = new(async (param) =>
             {
+
+                var curTimeZone = TimeZone.CurrentTimeZone;
+                string name = curTimeZone.StandardName;
+                TimeSpan currentOffset = curTimeZone.GetUtcOffset(DateTime.Now);
+                DateTime curUTC = curTimeZone.ToUniversalTime(DateTime.Now);
+
+                var n = DateTime.Now.ToUniversalTime();
+
                 try
                 {
                     ShedullerType? type = null;
@@ -199,7 +228,10 @@ namespace ZillPillMobileApp.MVVM.ViewModel
                         if (type == ShedullerType.EveryDay
                         || type == ShedullerType.DayOfWeek && ShedullerDayes.Any(x => x.IsEnambled && x.DayOfWeek.Equals(tempoDate.DayOfWeek)))
                             foreach (var time in Shedullers)
+                            {
+                                DateTime compair = new DateTime(tempoDate.Year, tempoDate.Month, tempoDate.Day, time.Time.Hours, time.Time.Minutes, 0, DateTimeKind.Local);
                                 result.Add(new ShedullerItemDto(tempoDate, time.Time, time.Quantity));
+                            }
 
                         tempoDate = tempoDate.AddDays(1);
                     }

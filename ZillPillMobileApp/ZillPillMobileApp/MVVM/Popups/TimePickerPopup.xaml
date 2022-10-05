@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+               x:Class="ZillPillMobileApp.MVVM.Popups.TimePickerPopup">
+
+    <VerticalStackLayout Padding="25">
+
+        <Grid ColumnDefinitions="100,100" RowDefinitions="*" ColumnSpacing="10"  Margin="0,0,0,10">
+
+            <Label  Grid.Column="0" Grid.Row="0" Margin="10,0,0,0" HorizontalOptions="Center" Text="Часы" FontSize="18" FontAttributes="Bold" />
+
+            <Label  Grid.Column="1" Grid.Row="0" Margin="10,0,0,0" HorizontalOptions="Center" Text="Минуты" FontSize="18" FontAttributes="Bold" />
+
+        </Grid>
+
+        <Grid ColumnDefinitions="100,100" RowDefinitions="250" ColumnSpacing="10">
+
+            <CollectionView x:Name="HoursList" Grid.Column="0" Grid.Row="0" SelectionMode="Single" 
+                            ItemsSource="{Binding HoursList}"
+                            SelectedItem="{Binding SelectedHour}"
+                            SelectionChangedCommand="{Binding SelectedHourChangeCommand}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="5" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Style="{StaticResource StackLayoutTimePicker}">
+                            <Label Padding="0,10,0,10" HorizontalOptions="Center" Text="{Binding ViewValue}"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <CollectionView x:Name="MinutesList" Grid.Column="1" Grid.Row="0" SelectionMode="Single"
+                            ItemsSource="{Binding MinutesList}"
+                            SelectedItem="{Binding SelectedMinute}"
+                            SelectionChangedCommand="{Binding SelectedMinuteChangeCommand}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="5" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Style="{StaticResource StackLayoutTimePicker}">
+                            <Label Padding="0,10,0,10" HorizontalOptions="Center" Text="{Binding ViewValue}"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </Grid>
+
+        <Button Margin="0,10,0,0" Text="Принять" Clicked="Button_Clicked"/>
+
+    </VerticalStackLayout>
+
+</toolkit:Popup>

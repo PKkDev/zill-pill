@@ -51,7 +51,6 @@
                 <Label Text="Authorize for continue"/>
             </StackLayout>
 
-
             <StackLayout>
 
                 <StackLayout Orientation="Horizontal" Margin="0,0,0,5" x:Name="PhoneEntryGroup">
@@ -65,20 +64,18 @@
                         <Entry Margin="20,0,0,0" Text="{Binding Phone}" Keyboard="Telephone" Placeholder="Phone"/>
                     </Frame>
 
-
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal" Margin="0,0,0,5" x:Name="CodeEntryGroup">
 
-                    <Frame Padding="0" HasShadow="True" BorderColor="#fff" HeightRequest="50" WidthRequest="56" CornerRadius="26">
+                    <Frame Padding="0" HasShadow="True" BorderColor="#fff" HeightRequest="56" WidthRequest="56" CornerRadius="26">
                         <Image Margin="0,0,2,0"  HeightRequest="30" WidthRequest="30" Source="code.svg"/>
                     </Frame>
 
 
                     <Frame Padding="0" HasShadow="True" BorderColor="#fff" HeightRequest="35" Margin="-15,0,0,0" HorizontalOptions="FillAndExpand">
-                        <Entry VerticalOptions="Center" Margin="20,0,0,0" Text="{Binding Code}" Keyboard="Numeric" Placeholder="Code"/>
+                        <Entry Margin="20,0,0,0" VerticalOptions="Center" Text="{Binding Code}" Keyboard="Numeric" Placeholder="Code"/>
                     </Frame>
-
 
                 </StackLayout>
 

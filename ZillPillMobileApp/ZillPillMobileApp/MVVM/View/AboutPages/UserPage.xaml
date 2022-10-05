@@ -9,7 +9,7 @@
 
         <ScrollView  Padding="5">
 
-            <Grid ColumnDefinitions="*" RowDefinitions="*,*,*,150">
+            <Grid ColumnDefinitions="*" RowDefinitions="*,*,*,150,50,50">
 
                 <Frame Grid.Column="0" Grid.Row="0" Style="{StaticResource CardFrame}">
 
@@ -24,7 +24,7 @@
 
                     <VerticalStackLayout>
                         <Label Text="Email" HorizontalOptions="Center"/>
-                        <Label Text="{Binding UserDetail.Email}" HorizontalOptions="Start" />
+                        <Entry Text="{Binding UserDetail.Email}" Keyboard="Email"/>
                     </VerticalStackLayout>
 
                 </Frame>
@@ -33,7 +33,7 @@
 
                     <VerticalStackLayout>
                         <Label Text="Имя польователя" HorizontalOptions="Center"/>
-                        <Label Text="{Binding UserDetail.FirstName}" HorizontalOptions="Start" />
+                        <Entry Text="{Binding UserDetail.FirstName}" Keyboard="Text"/>
                     </VerticalStackLayout>
 
                 </Frame>
@@ -60,6 +60,10 @@
                     </VerticalStackLayout>
 
                 </Frame>
+
+                <Button Grid.Column="0" Grid.Row="4" Text="Обновить аккаунт" Margin="5,5" Command="{Binding UpdateUserCommand}"/>
+
+                <Button Grid.Column="0" Grid.Row="5" Text="Удалить аккаунт" Margin="5,5" Command="{Binding DeleteAccountCommand}"/>
 
             </Grid>
 

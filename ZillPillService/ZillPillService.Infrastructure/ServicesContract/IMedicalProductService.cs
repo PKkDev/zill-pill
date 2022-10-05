@@ -1,12 +1,13 @@
 ﻿using ZillPillService.Domain.DTO.MedicalProduct;
 using ZillPillService.Domain.DTO.Shedullers;
+using ZillPillService.Domain.Query;
 using ZillPillService.Domain.Query.User;
 
 namespace ZillPillService.Infrastructure.ServicesContract
 {
     public interface IMedicalProductService
     {
-        public Task<List<MedicalProductDto>> GetMedicalProductsListAsync(int offset, int limit, CancellationToken ct);
+        public Task<List<MedicalProductDto>> GetMedicalProductsListAsync(GetFilteredMedicalProductQuery filter, int offset, int limit, CancellationToken ct);
 
         public Task<MedicalProductDetailDto> GetMedicalProductsDetailAsync(int productId, CancellationToken ct);
 

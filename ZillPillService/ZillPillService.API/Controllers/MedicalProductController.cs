@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ZillPillService.Domain.DTO.MedicalProduct;
 using ZillPillService.Domain.DTO.Shedullers;
+using ZillPillService.Domain.Query;
 using ZillPillService.Domain.Query.User;
 using ZillPillService.Infrastructure.ServicesContract;
 
@@ -19,11 +20,11 @@ namespace ZillPillService.API.Controllers
             _service = service;
         }
 
-        [HttpGet("list")]
+        [HttpPost("list")]
         public async Task<IEnumerable<MedicalProductDto>> GetMedicalProductsList(
-            [FromQuery] int offset, [FromQuery] int limit, CancellationToken ct = default)
+          [FromBody] GetFilteredMedicalProductQuery query, [FromQuery] int offset, [FromQuery] int limit, CancellationToken ct = default)
         {
-            return await _service.GetMedicalProductsListAsync(offset, limit, ct);
+            return await _service.GetMedicalProductsListAsync(query, offset, limit, ct);
         }
 
         [HttpGet("detail")]

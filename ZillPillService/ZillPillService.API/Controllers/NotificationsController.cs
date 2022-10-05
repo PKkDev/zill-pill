@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using ZillPillService.Application.Services;
 using ZillPillService.Domain.Query.Notification;
 using ZillPillService.Infrastructure.ServicesContract;
 
@@ -10,11 +11,11 @@ namespace ZillPillService.API.Controllers
     [ApiController]
     public class NotificationsController : ControllerBase
     {
-        private readonly INotificationService _notificationService;
+        private readonly ICheckShedullerService _checkShedullerService;
 
-        public NotificationsController(INotificationService notificationService)
+        public NotificationsController(ICheckShedullerService checkSheduller)
         {
-            _notificationService = notificationService;
+            _checkShedullerService = checkSheduller;
         }
 
         /// <summary>
@@ -22,12 +23,13 @@ namespace ZillPillService.API.Controllers
         /// </summary>
         /// <param name="message"></param>
         /// <returns></returns>
-        [HttpPost("send")]
+        [HttpGet("check")]
         // [AllowAnonymous]
         // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        public async Task PushSystemMessage([FromBody] NotificationQuery message)
+        // [FromBody] NotificationQuery message
+        public async Task PushSystemMessage()
         {
-            await _notificationService.SendAll(message);
+            await _checkShedullerService.CheckSheduller();
         }
 
     }

@@ -30,6 +30,7 @@ namespace ZillPillService.Domain.Query.User
         public DateTime Date { get; set; }
         public TimeSpan Time { get; set; }
         public double Quantity { get; set; }
+       // public DateTime CompaitDateTime { get; set; }
 
         public ShedullerItem(DateTime date, TimeSpan time, double quantity)
         {

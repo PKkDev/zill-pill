@@ -6,6 +6,7 @@ using System.Text;
 using ZillPillMobileApp.Domain;
 using System.Net.Http.Headers;
 using ZillPillMobileApp.Domain.DTO.Shedullers;
+using ZillPillMobileApp.Domain.Query;
 
 namespace ZillPillMobileApp.Infrastructure.Services
 {
@@ -22,7 +23,7 @@ namespace ZillPillMobileApp.Infrastructure.Services
             httpClientHandler.ServerCertificateCustomValidationCallback = (httpRequestMessage, cert, cetChain, policyErrors) => true;
         }
 
-        public async Task<List<MedicalPoductItemModel>> GetMedicalPoductListAsync(int offset, int limit)
+        public async Task<List<MedicalPoductItemModel>> GetMedicalPoductListAsync(GetFilteredMedicalProductQuery query, int offset, int limit)
         {
             var client = new HttpClient(httpClientHandler);
             Dictionary<string, string> param = new()
@@ -31,7 +32,9 @@ namespace ZillPillMobileApp.Infrastructure.Services
                 { "limit", $"{limit}" }
             };
             var urlToQuery = QueryHelpers.AddQueryString(_baseUrl.AbsoluteUri + "/api/medProd/list", param);
-            var resp = await client.GetAsync(urlToQuery);
+            var json = JsonConvert.SerializeObject(query);
+            var data = new StringContent(json, Encoding.UTF8, "application/json");
+            var resp = await client.PostAsync(urlToQuery, data);
 
             var response = await resp.Content.ReadAsStringAsync();
 
@@ -42,7 +45,7 @@ namespace ZillPillMobileApp.Infrastructure.Services
 
             var result = new List<MedicalPoductItemModel>();
             foreach (var dto in responseDto)
-                result.Add(new MedicalPoductItemModel(dto.ProductId, dto.ProductId, dto.Name, ImageSource.FromStream(() => new MemoryStream(dto.ImageData))));
+                result.Add(new MedicalPoductItemModel(dto.ProductId, dto.ProductId, dto.Name, ImageSource.FromStream(() => new MemoryStream(dto.ImageData)), 0, 0, 0.0));
 
             return result;
         }
@@ -100,7 +103,10 @@ namespace ZillPillMobileApp.Infrastructure.Services
 
             var result = new List<MedicalPoductItemModel>();
             foreach (var dto in responseDto)
-                result.Add(new MedicalPoductItemModel(dto.ProductId, dto.RelationId, dto.Name, ImageSource.FromStream(() => new MemoryStream(dto.ImageData))));
+                result.Add(new MedicalPoductItemModel(
+                    dto.ProductId, dto.RelationId, dto.Name,
+                    ImageSource.FromStream(() => new MemoryStream(dto.ImageData)),
+                    dto.TotalToAccept, dto.TotalAccepted, dto.Progress));
 
             return result;
         }
@@ -186,7 +192,7 @@ namespace ZillPillMobileApp.Infrastructure.Services
 
         #endregion sheduller
 
-        #region
+        #region sheduller items
 
         public async Task<List<ShedullerItemDetailModel>> GetShedullerItemsByDayAsync(DateTime date)
         {
@@ -249,6 +255,6 @@ namespace ZillPillMobileApp.Infrastructure.Services
             }
         }
 
-        #endregion
+        #endregion sheduller items
     }
 }

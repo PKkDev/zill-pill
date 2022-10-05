@@ -1,4 +1,6 @@
-﻿using System.Reflection.PortableExecutable;
+﻿using DocumentFormat.OpenXml.Wordprocessing;
+using System.Reflection.PortableExecutable;
+using System.Text.RegularExpressions;
 
 namespace Parser.ConsoleApp
 {
@@ -7,7 +9,10 @@ namespace Parser.ConsoleApp
         public string TradeName { get; set; }
         public List<string> ChemicalName { get; set; }
         public List<string> ReleaseForm { get; set; }
+
         public string Manufacturer { get; set; }
+        public List<string> ManufacturerCountries { get; set; }
+
         public string Characteristics { get; set; }
         public RegistrationModel RegistrationCertificate { get; set; }
 
@@ -15,34 +20,11 @@ namespace Parser.ConsoleApp
             string tradeName, string chemicalName, string releaseForm, string manufacturer,
             string characteristics, string registrationCertificate)
         {
-            TradeName = tradeName.Trim(new char[] { '®', ' ' });
+            TradeName = tradeName.Trim(new char[] { '@', '®', ' ' });
+            TradeName = TradeName.Replace('®', '_');
 
+            ManufacturerCountries = new();
 
-            // Вид:
-            // Доп.признаки:
-            // Включен в список контролируемых:
-            // Присвоен статус орфанного
-            // Не присвоен статус орфанного
-            //if (characteristics.Contains("Вид:"))
-            //{
-            //    var index2 = characteristics.IndexOf("Вид: ");
-            //    var index23 = characteristics.IndexOf(":", index2 + 5);
-            //    var str = characteristics.Substring(index2, index23);
-            //}
-            //if (characteristics.Contains("Доп.Признаки:"))
-            //{
-            //    var index2 = characteristics.IndexOf("Доп.Признаки:");
-            //    var index23 = characteristics.IndexOf(":", index2 + 13);
-            //    var str = characteristics.Substring(index2, index23);
-            //}
-            //var characteristicsSplit = characteristics.Split(": ");
-            //Characteristics = new();
-            //var index = 0;
-            //for (int i = 0; i < characteristicsSplit.Length / 2; i++)
-            //{
-            //    Characteristics.Add($"{characteristicsSplit[index].Trim()} : {characteristicsSplit[index + 1].Trim()}");
-            //    index += 2;
-            //}
             Characteristics = characteristics.Trim();
 
             ChemicalName = new();
@@ -54,9 +36,20 @@ namespace Parser.ConsoleApp
             ReleaseForm = new();
             foreach (var form in releaseFormSplit)
                 if (!string.IsNullOrEmpty(form))
-                    ReleaseForm.Add(form.Replace('\r', ' ').Trim());
+                    ReleaseForm.Add(form.Replace('\r', ' ').Trim().ToLower());
 
             Manufacturer = manufacturer.Trim();
+
+            // \w*\((\w+)\)\w*
+
+            Regex regex = new Regex(@"\w*\((\w+\s+\w+|\w+)\)\w*", RegexOptions.IgnoreCase);
+            var matches = regex.Matches(Manufacturer);
+            foreach (Match match in matches)
+            {
+                var country = match.Value.Trim(new char[] { '(', ')' });
+                ManufacturerCountries.Add(country.ToLower());
+            }
+
 
             if (string.IsNullOrEmpty(registrationCertificate))
                 RegistrationCertificate = new RegistrationModel();

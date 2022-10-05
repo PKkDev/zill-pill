@@ -41,43 +41,50 @@
                     <DataTemplate>
 
                         <Frame Padding="0" Style="{StaticResource CardFrame}" IsClippedToBounds="True">
+                            <VerticalStackLayout>
 
-                            <Grid Padding="0" RowDefinitions="*" ColumnDefinitions="2*,3*,*">
+                                <Grid Padding="0" RowDefinitions="*" ColumnDefinitions="2*,3*,*">
 
-                                <Frame Grid.Column="0" Grid.Row="1" CornerRadius="0" 
+                                    <Frame Grid.Column="0" Grid.Row="1" CornerRadius="0" 
                                        Margin="5" Padding="0" HasShadow="False" 
                                        IsClippedToBounds="True" BorderColor="Transparent">
-                                    <Image HeightRequest="80"
+                                        <Image HeightRequest="80"
                                            WidthRequest="80"
                                            Aspect="Fill" 
                                            Source="{Binding ImageSource}"/>
-                                </Frame>
+                                    </Frame>
 
-                                <Label Grid.Column="1" Grid.Row="1" Padding="0"
+                                    <Label Grid.Column="1" Grid.Row="1" Padding="0"
                                        Text="{Binding Name}"
                                        VerticalOptions="Center"
                                        HorizontalOptions="Center"
                                        LineBreakMode="WordWrap" 
                                        FontSize="25" />
 
-                                <VerticalStackLayout Grid.Column="2" Grid.Row="1">
+                                    <VerticalStackLayout Grid.Column="2" Grid.Row="1">
 
-                                    <ImageButton Margin="2" WidthRequest="30" HeightRequest="25" Source="trash.svg" 
+                                        <ImageButton Margin="2" WidthRequest="30" HeightRequest="25" Source="trash.svg" 
                                                  Command="{Binding Path=BindingContext.DeleteItemCommand, Source={x:Reference Name=MyUserMedProdPage}}" 
                                                  CommandParameter="{Binding .}"/>
 
-                                    <ImageButton Margin="2" WidthRequest="30" HeightRequest="25" Source="detail.svg"
+                                        <ImageButton Margin="2" WidthRequest="30" HeightRequest="25" Source="detail.svg"
                                                  Command="{Binding Path=BindingContext.ViewDetailCommand, Source={x:Reference Name=MyUserMedProdPage}}" 
                                                  CommandParameter="{Binding .}"/>
 
-                                    <ImageButton Margin="2" WidthRequest="30" HeightRequest="25" Source="alarm.svg"
+                                        <ImageButton Margin="2" WidthRequest="30" HeightRequest="25" Source="alarm.svg"
                                                  Command="{Binding Path=BindingContext.SetShedullerCommand, Source={x:Reference Name=MyUserMedProdPage}}" 
                                                  CommandParameter="{Binding .}"/>
 
-                                </VerticalStackLayout>
+                                    </VerticalStackLayout>
 
+                                </Grid>
 
-                            </Grid>
+                                <ProgressBar Margin="10,0" ProgressColor="Green" Progress="{Binding Progress}"/>
+                                <Label Text="{Binding ProgressStr}"/>
+
+                                <!--<BoxView Color="Green"/>-->
+
+                            </VerticalStackLayout>
 
                         </Frame>
 

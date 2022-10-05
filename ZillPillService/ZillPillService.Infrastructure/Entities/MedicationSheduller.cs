@@ -9,6 +9,8 @@ namespace ZillPillService.Infrastructure.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
+        public DateTime UnionUtcDate { get; set; }
+
         public DateTime Date { get; set; }
 
         public TimeSpan Time { get; set; }

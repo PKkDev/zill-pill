@@ -4,7 +4,9 @@ using ZillPillMobileApp.Core;
 using ZillPillMobileApp.Infrastructure.Services;
 using ZillPillMobileApp.MVVM.Model;
 
+#if ANDROID
 using Firebase.Messaging;
+#endif
 
 namespace ZillPillMobileApp.MVVM.ViewModel
 {
@@ -48,8 +50,17 @@ namespace ZillPillMobileApp.MVVM.ViewModel
             CheckCodeCommand = new RelyCommand(async (param) => await CheckCodeAsync());
             FingerLogInCommand = new RelyCommand(async (paam) => { await OnFingerLogInCommand(); });
 
-            this._gridBase = gridBase;
+            _gridBase = gridBase;
             VisualStateManager.GoToState(gridBase, "PhoneView");
+
+            Task.Run(async () =>
+            {
+                await Task.Delay((int)TimeSpan.FromSeconds(2).TotalMilliseconds);
+                var phone = await SecureStorage.GetAsync("phone");
+                var code = await SecureStorage.GetAsync("code");
+                if (!string.IsNullOrEmpty(phone) && !string.IsNullOrEmpty(code))
+                    MainThread.BeginInvokeOnMainThread(() => { FingerLogInCommand.Execute(null); });
+            });
         }
 
         private async Task GetCodeAsync()
@@ -81,10 +92,12 @@ namespace ZillPillMobileApp.MVVM.ViewModel
                 await SecureStorage.SetAsync("code", Code);
                 await SecureStorage.SetAsync("token", cred.Token);
 
+#if ANDROID
                 FirebaseMessaging.Instance.SubscribeToTopic($"sheduller_{Phone}");
                 FirebaseMessaging.Instance.SubscribeToTopic($"system");
+#endif
 
-                await Shell.Current.GoToAsync("//Calendr");
+                await Shell.Current.GoToAsync("//Calendar");
             }
             catch (Exception e)
             {

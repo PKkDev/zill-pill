@@ -10,6 +10,8 @@ namespace ZillPillService.Infrastructure.Context
 
         public DbSet<UserMedicinalProduct> UserMedicinalProduct { get; set; }
 
+        public DbSet<CountryDictionary> CountryDictionary { get; set; }
+
         public DbSet<MedicationSheduller> MedicationSheduller { get; set; }
 
         public DbSet<MedicinalProduct> MedicinalProduct { get; set; }
@@ -21,7 +23,7 @@ namespace ZillPillService.Infrastructure.Context
         public AppDataBaseContext(DbContextOptions<AppDataBaseContext> options)
             : base(options)
         {
-            // Add-Migration MigrationV1
+            // Add-Migration MigrationV5
             // Update-Database
             // Remove-Migration
 
