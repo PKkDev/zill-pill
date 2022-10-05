@@ -18,15 +18,14 @@ namespace ZillPillService.Application.Services
 
         public async Task CheckSheduller()
         {
-            var now = DateTime.Now;
-            var nowTime = new TimeSpan(now.Hour, now.Minute, 0);
+            var nowUTC = DateTime.Now.ToUniversalTime();
 
             var entities = await _context.MedicationSheduller
                 .Include(x => x.UserMedicinalProduct)
                 .ThenInclude(x => x.User)
                 .Include(x => x.UserMedicinalProduct)
                 .ThenInclude(x => x.MedicinalProduct)
-                .Where(x => !x.IsSended && x.Time <= nowTime && now.Date == x.Date)
+                .Where(x => !x.IsSended && x.UnionUtcDate <= nowUTC)
                 .ToListAsync();
 
             if (entities.Any())

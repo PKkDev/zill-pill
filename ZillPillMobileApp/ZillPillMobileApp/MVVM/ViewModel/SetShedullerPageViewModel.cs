@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Maui.Views;
+using System;
 using System.Collections.ObjectModel;
 using ZillPillMobileApp.Core;
 using ZillPillMobileApp.Domain;
@@ -203,14 +204,6 @@ namespace ZillPillMobileApp.MVVM.ViewModel
 
             DoneCommand = new(async (param) =>
             {
-
-                var curTimeZone = TimeZone.CurrentTimeZone;
-                string name = curTimeZone.StandardName;
-                TimeSpan currentOffset = curTimeZone.GetUtcOffset(DateTime.Now);
-                DateTime curUTC = curTimeZone.ToUniversalTime(DateTime.Now);
-
-                var n = DateTime.Now.ToUniversalTime();
-
                 try
                 {
                     ShedullerType? type = null;
@@ -229,8 +222,9 @@ namespace ZillPillMobileApp.MVVM.ViewModel
                         || type == ShedullerType.DayOfWeek && ShedullerDayes.Any(x => x.IsEnambled && x.DayOfWeek.Equals(tempoDate.DayOfWeek)))
                             foreach (var time in Shedullers)
                             {
-                                DateTime compair = new DateTime(tempoDate.Year, tempoDate.Month, tempoDate.Day, time.Time.Hours, time.Time.Minutes, 0, DateTimeKind.Local);
-                                result.Add(new ShedullerItemDto(tempoDate, time.Time, time.Quantity));
+                                DateTime date = TimeZoneInfo.ConvertTimeToUtc(tempoDate.Add(time.Time), TimeZoneInfo.Local);
+                                var timeZoneId = TimeZoneInfo.Local.Id;
+                                result.Add(new ShedullerItemDto(tempoDate, time.Time, time.Quantity, date, timeZoneId));
                             }
 
                         tempoDate = tempoDate.AddDays(1);

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+               x:Class="ZillPillMobileApp.MVVM.Popups.CountrySelectorPoup">
+
+    <VerticalStackLayout Padding="25">
+
+        <Grid ColumnDefinitions="300" RowDefinitions="50,300,50" RowSpacing="10">
+
+            <SearchBar x:Name="searchBar" Grid.Column="0" Grid.Row="0"
+                   BackgroundColor="#fff"
+                   Placeholder="росиия"
+                   PlaceholderColor="#eee"
+                   TextChanged="searchBar_TextChanged"/>
+
+            <CollectionView x:Name="HoursList" SelectionMode="Single" Grid.Column="0" Grid.Row="1"
+                        ItemsSource="{Binding ToViewCountries}"
+                        SelectedItem="{Binding SelectedCountry}"
+                        SelectionChangedCommand="{Binding SelectedHourChangeCommand}">
+
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="5" />
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+
+                        <HorizontalStackLayout Style="{StaticResource StackLayoutTimePicker}">
+
+                            <Frame CornerRadius="5" Margin="5" Padding="0" IsClippedToBounds="True" BackgroundColor="Transparent">
+                                <Image WidthRequest="35" HeightRequest="25" Aspect="AspectFill" Source="{Binding ImageSource}"/>
+                            </Frame>
+
+                            <Label VerticalOptions="Center" Padding="0,10,0,10" HorizontalOptions="Center" Text="{Binding Name}"/>
+
+                        </HorizontalStackLayout>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+
+            <FlexLayout JustifyContent="SpaceBetween" Direction="Row" Grid.Column="0" Grid.Row="2">
+
+                <Button Padding="5" Text="Очистить" Clicked="Cleare_Button_Clicked"/>
+
+                <Button Padding="5" Text="Принять" Clicked="Accept_Button_Clicked"/>
+
+            </FlexLayout>
+
+        </Grid>
+
+    </VerticalStackLayout>
+
+</toolkit:Popup>

@@ -23,7 +23,7 @@ namespace ZillPillService.Infrastructure.Context
         public AppDataBaseContext(DbContextOptions<AppDataBaseContext> options)
             : base(options)
         {
-            // Add-Migration MigrationV5
+            // Add-Migration MigrationV8
             // Update-Database
             // Remove-Migration
 

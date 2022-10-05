@@ -11,6 +11,8 @@ namespace ZillPillService.Infrastructure.Entities
 
         public DateTime UnionUtcDate { get; set; }
 
+        public string TimeZoneId { get; set; }
+
         public DateTime Date { get; set; }
 
         public TimeSpan Time { get; set; }

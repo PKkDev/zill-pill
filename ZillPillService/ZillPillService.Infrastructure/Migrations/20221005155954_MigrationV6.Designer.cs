@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ZillPillService.Infrastructure.Context;
 
@@ -11,9 +12,11 @@ using ZillPillService.Infrastructure.Context;
 namespace ZillPillService.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDataBaseContext))]
-    partial class AppDataBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20221005155954_MigrationV6")]
+    partial class MigrationV6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -80,9 +83,8 @@ namespace ZillPillService.Infrastructure.Migrations
                     b.Property<TimeSpan>("Time")
                         .HasColumnType("time");
 
-                    b.Property<string>("TimeZoneId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<TimeSpan>("TimeUtcOffset")
+                        .HasColumnType("time");
 
                     b.Property<DateTime>("UnionUtcDate")
                         .HasColumnType("datetime2");

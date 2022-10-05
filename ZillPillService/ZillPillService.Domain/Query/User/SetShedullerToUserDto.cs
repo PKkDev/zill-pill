@@ -30,13 +30,16 @@ namespace ZillPillService.Domain.Query.User
         public DateTime Date { get; set; }
         public TimeSpan Time { get; set; }
         public double Quantity { get; set; }
-       // public DateTime CompaitDateTime { get; set; }
+        public DateTime UnionUtcDate { get; set; }
+        public string TimeZoneId { get; set; }
 
-        public ShedullerItem(DateTime date, TimeSpan time, double quantity)
+        public ShedullerItem(DateTime date, TimeSpan time, double quantity, DateTime unionUtcDate, string timeZoneId)
         {
             Date = date;
             Time = time;
             Quantity = quantity;
+            UnionUtcDate = unionUtcDate;
+            TimeZoneId = timeZoneId;
         }
     }
 }

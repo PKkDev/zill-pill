@@ -75,7 +75,7 @@ namespace ZillPillService.API.Controllers
         }
 
         [HttpPost("user/sheduller")]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task SetMedProdShedullerForUser(
             [FromBody] SetShedullerToUserDto query, CancellationToken ct = default)
         {

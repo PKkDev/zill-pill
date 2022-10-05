@@ -174,7 +174,7 @@ namespace ZillPillService.Application.Services
                 ShedullerItems = entity.Shedullers
                     .GroupBy(x => x.Date)
                     .First()
-                    .Select(x => new ShedullerItem(x.Date, x.Time, x.Quantity))
+                    .Select(x => new ShedullerItem(x.Date, x.Time, x.Quantity, x.UnionUtcDate, x.TimeZoneId))
                     .ToList();
 
             SetShedullerToUserDto result = new()
@@ -199,6 +199,8 @@ namespace ZillPillService.Application.Services
                 .Where(x => x.Id == query.RelationId)
                 .FirstOrDefaultAsync(ct);
 
+            var nowUTC = DateTime.Now.ToUniversalTime();
+
             if (entity == null)
                 throw new ApiException("relation not found");
 
@@ -211,10 +213,12 @@ namespace ZillPillService.Application.Services
                     Date = x.Date,
                     Time = x.Time,
                     Quantity = x.Quantity,
-                    IsAccepted = DateTime.Today > x.Date,
-                    IsSended = DateTime.Today > x.Date,
-                    UnionUtcDate = x.Date.Add(x.Time).ToUniversalTime(),
-                }).ToList();
+                    IsAccepted = x.UnionUtcDate < nowUTC,
+                    IsSended = x.UnionUtcDate < nowUTC,
+                    UnionUtcDate = x.UnionUtcDate,
+                    TimeZoneId = x.TimeZoneId,
+                })
+                .ToList();
 
             _context.UserMedicinalProduct.Update(entity);
             await _context.SaveChangesAsync(ct);

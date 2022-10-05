@@ -110,8 +110,19 @@ namespace ZillPillMobileApp.MVVM.ViewModel
                 var item = param as ShedullerItemDetailModel;
                 if (!item.IsAccepted)
                 {
-                    await _mpService.AcceptShedullerItemAsync(item.ShedullerItemId);
-                    ShedullersIsRefreshing = true;
+                    try
+                    {
+                        await _mpService.AcceptShedullerItemAsync(item.ShedullerItemId);
+                    }
+                    catch (Exception e)
+                    {
+                        MessagingCenter.Send(new ErrorMessage(e.Message), "Error");
+                    }
+                    finally
+                    {
+                        ShedullersIsRefreshing = true;
+                    }
+
                 }
             });
         }

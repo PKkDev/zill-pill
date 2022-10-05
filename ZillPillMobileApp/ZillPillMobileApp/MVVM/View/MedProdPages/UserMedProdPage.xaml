@@ -80,7 +80,7 @@
                                 </Grid>
 
                                 <ProgressBar Margin="10,0" ProgressColor="Green" Progress="{Binding Progress}"/>
-                                <Label Text="{Binding ProgressStr}"/>
+                                <Label HorizontalOptions="End" Margin="10,0" Text="{Binding ProgressStr}"/>
 
                                 <!--<BoxView Color="Green"/>-->
 

@@ -10,6 +10,7 @@ public partial class App : Application
 
         DependencyService.Register<UserDataService>();
         DependencyService.Register<MedicalProductDataService>();
+        DependencyService.Register<CountriesDataService>();
 
         string lang = Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName;
         Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("ru-RU");

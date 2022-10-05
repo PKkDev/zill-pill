@@ -49,7 +49,7 @@ namespace ZillPillMobileApp.MVVM.Popups
             for (int i = 0; i <= 23; i++) HoursList.Add(new(i));
 
             MinutesList = new();
-            for (int i = 0; i <= 60; i++) MinutesList.Add(new(i));
+            for (int i = 0; i <= 59; i++) MinutesList.Add(new(i));
 
             SelectedHourChangeCommand = new RelyCommand((param) =>
             {

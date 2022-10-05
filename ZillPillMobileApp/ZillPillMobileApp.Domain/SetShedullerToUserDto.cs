@@ -40,19 +40,22 @@ namespace ZillPillMobileApp.Domain
         [JsonProperty("time")]
         public TimeSpan Time { get; set; }
 
-        //[JsonProperty("compaitDateTime")]
-        //public DateTime CompaitDateTime { get; set; }
-
         [JsonProperty("quantity")]
         public double Quantity { get; set; }
 
-        public ShedullerItemDto(DateTime date, TimeSpan time, double quantity)//, DateTime compaitDateTime)
+        [JsonProperty("unionUtcDate")]
+        public DateTime UnionUtcDate { get; set; }
+
+        [JsonProperty("timeZoneId")]
+        public string TimeZoneId { get; set; }
+
+        public ShedullerItemDto(DateTime date, TimeSpan time, double quantity, DateTime unionUtcDate, string timeZoneId)
         {
             Date = date;
             Time = time;
             Quantity = quantity;
-
-            // CompaitDateTime = compaitDateTime;
+            UnionUtcDate = unionUtcDate;
+            TimeZoneId = timeZoneId;
         }
     }
 

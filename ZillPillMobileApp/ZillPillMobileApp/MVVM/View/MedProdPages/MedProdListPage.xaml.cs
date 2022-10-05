@@ -1,3 +1,4 @@
+using CommunityToolkit.Maui.Views;
 using ZillPillMobileApp.MVVM.ViewModel;
 
 namespace ZillPillMobileApp.MVVM.View.MedProdPages;
@@ -11,7 +12,8 @@ public partial class MedProdListPage : ContentPage
         InitializeComponent();
 
         var navigatePage = async (Page page) => await Navigation.PushAsync(page);
+        var showPopupAsync = (Popup popup) => this.ShowPopupAsync(popup);
 
-        BindingContext = _viewModel = new MedProdListPageViewModel(navigatePage);
+        BindingContext = _viewModel = new MedProdListPageViewModel(navigatePage, showPopupAsync, PageStackLayout);
     }
 }
