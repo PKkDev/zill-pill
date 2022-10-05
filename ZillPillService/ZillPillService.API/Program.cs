@@ -28,6 +28,7 @@ builder.Services.AddTransient<IMedicalProductService, MedicalProductService>();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<INotificationService, NotificationService>();
 builder.Services.AddTransient<ICheckShedullerService, CheckShedullerService>();
+builder.Services.AddTransient<ICountriesService, CountriesService>();
 builder.Services.AddTransient<ErrorNotificationService>();
 
 #region FireBase
