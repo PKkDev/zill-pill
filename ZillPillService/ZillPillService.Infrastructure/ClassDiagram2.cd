@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ZillPillService.Infrastructure.Entities.CountryDictionary">
+    <Position X="0.5" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAIAAAAAAAAAIQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\CountryDictionary.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="MedicinalProducts" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="ZillPillService.Infrastructure.Entities.MedicationSheduller">
+    <Position X="10" Y="0.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACAAEAABAAAAAAIAAAAAAAAAAIAgABAAAAgQAAAQA=</HashCode>
+      <FileName>Entities\MedicationSheduller.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="UserMedicinalProduct" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ZillPillService.Infrastructure.Entities.MedicinalProduct">
+    <Position X="4.25" Y="0.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAgCACBAAAAAAAAAKAAAAAQAAAIAARAAAAACAEAAAAA=</HashCode>
+      <FileName>Entities\MedicinalProduct.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="UserMedicinalProduct" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="ZillPillService.Infrastructure.Entities.MedicinalProductCertificate">
+    <Position X="0.5" Y="4.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAKACAAAAAAAAAAAAABAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Entities\MedicinalProductCertificate.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="MedicinalProduct" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ZillPillService.Infrastructure.Entities.MedicinalProductChemical">
+    <Position X="0.5" Y="3" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAIAAAAAAAAAAAAAAQBAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\MedicinalProductChemical.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="MedicinalProduct" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ZillPillService.Infrastructure.Entities.MedicinalProductImage">
+    <Position X="3.25" Y="6" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAIAAAAAAAAAAAAAAABAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\MedicinalProductImage.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="MedicinalProduct" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ZillPillService.Infrastructure.Entities.MedicinalProductRelease">
+    <Position X="5.75" Y="5.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAIAAAAAAAAAAAAAAQBAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\MedicinalProductRelease.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="MedicinalProduct" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ZillPillService.Infrastructure.Entities.User">
+    <Position X="10.75" Y="4" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAIAAAAIAAgAAAAAAAAAAAAABAAIAAAAAA=</HashCode>
+      <FileName>Entities\User.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Profile" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="UserMedicinalProduct" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="ZillPillService.Infrastructure.Entities.UserMedicinalProduct">
+    <Position X="7.25" Y="1.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>BAADCAAIAAAIAAAAAAAAAAgBAEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\UserMedicinalProduct.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ZillPillService.Infrastructure.Entities.UserProfile">
+    <Position X="8.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAADAEAAACAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\UserProfile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
