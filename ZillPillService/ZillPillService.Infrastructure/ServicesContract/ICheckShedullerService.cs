@@ -2,6 +2,8 @@
 {
     public interface ICheckShedullerService
     {
-        public Task CheckSheduller();
+        public Task CheckShedullersAsync(CancellationToken ct);
+
+        public Task SendSystemMessgeAsync(string body, CancellationToken ct);
     }
 }

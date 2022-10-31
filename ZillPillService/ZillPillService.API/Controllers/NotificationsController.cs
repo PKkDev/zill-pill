@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using ZillPillService.Application.Services;
-using ZillPillService.Domain.Query.Notification;
+﻿using Microsoft.AspNetCore.Mvc;
 using ZillPillService.Infrastructure.ServicesContract;
 
 namespace ZillPillService.API.Controllers
@@ -21,16 +17,26 @@ namespace ZillPillService.API.Controllers
         /// <summary>
         /// отправка системного сообщения
         /// </summary>
-        /// <param name="message"></param>
+        /// <param name="ct"></param>
         /// <returns></returns>
         [HttpGet("check")]
         // [AllowAnonymous]
         // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         // [FromBody] NotificationQuery message
-        public async Task PushSystemMessage()
-        {
-            await _checkShedullerService.CheckSheduller();
-        }
+        public async Task CheckShedullers(CancellationToken ct = default)
+            => await _checkShedullerService.CheckShedullersAsync(ct);
+
+
+        /// <summary>
+        /// отправка системного сообщения
+        /// </summary>
+        /// <param name="body"></param>
+        /// <param name="ct"></param>
+        /// <returns></returns>
+        [HttpGet("sys-mes")]
+        public async Task SendSystemMessge([FromQuery] string body, CancellationToken ct = default)
+            => await _checkShedullerService.SendSystemMessgeAsync(body, ct);
+
 
     }
 }

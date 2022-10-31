@@ -39,20 +39,38 @@ namespace ZillPillMobileApp.Platforms.Android.FireBase
                 intent.PutExtra(key, data[key]);
             }
 
-            var pendingIntent = PendingIntent.GetActivity(this,
-                                                          MainActivity.NOTIFICATION_ID,
-                                                          intent,
-                                                          PendingIntentFlags.OneShot);
+            PendingIntent pendingIntent = PendingIntent.GetActivity(
+                this,
+                MainActivity.NOTIFICATION_ID,
+                intent,
+                PendingIntentFlags.OneShot);
 
             var notificationBuilder = new NotificationCompat.Builder(this, MainActivity.CHANNEL_ID)
                                       .SetSmallIcon(Resource.Drawable.phone)
                                       .SetContentTitle("FCM Message")
                                       .SetContentText(messageBody)
                                       .SetAutoCancel(true)
-                                      .SetContentIntent(pendingIntent);
+                                      .SetContentIntent(BuildIntentToShowMainActivity());
 
             var notificationManager = NotificationManagerCompat.From(this);
             notificationManager.Notify(MainActivity.NOTIFICATION_ID, notificationBuilder.Build());
+        }
+
+        /// <summary>
+        /// действие на переход в приложение
+        /// </summary>
+        /// <returns></returns>
+        PendingIntent BuildIntentToShowMainActivity()
+        {
+            Intent notificationIntent = new Intent(this, typeof(MainActivity))
+                .AddFlags(ActivityFlags.ClearTop)
+                .SetAction("incoServiceAdminMobileApp.action.MAIN_ACTIVITY")
+                .SetFlags(ActivityFlags.SingleTop | ActivityFlags.ClearTask)
+                .PutExtra("notif", "openMain")
+                .PutExtra("id", MainActivity.NOTIFICATION_ID.ToString()); ;
+
+            PendingIntent pendingIntent = PendingIntent.GetActivity(this, MainActivity.NOTIFICATION_ID, notificationIntent, PendingIntentFlags.OneShot);
+            return pendingIntent;
         }
 
         //void SendNotification(string messageTitle, string messageBody, IDictionary<string, string> data)

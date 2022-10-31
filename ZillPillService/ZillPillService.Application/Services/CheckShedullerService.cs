@@ -10,13 +10,14 @@ namespace ZillPillService.Application.Services
         private readonly AppDataBaseContext _context;
         private readonly INotificationService _notifService;
 
-        public CheckShedullerService(AppDataBaseContext context, INotificationService notifService)
+        public CheckShedullerService(
+            AppDataBaseContext context, INotificationService notifService)
         {
             _context = context;
             _notifService = notifService;
         }
 
-        public async Task CheckSheduller()
+        public async Task CheckShedullersAsync(CancellationToken ct)
         {
             var nowUTC = DateTime.Now.ToUniversalTime();
 
@@ -26,7 +27,7 @@ namespace ZillPillService.Application.Services
                 .Include(x => x.UserMedicinalProduct)
                 .ThenInclude(x => x.MedicinalProduct)
                 .Where(x => !x.IsSended && x.UnionUtcDate <= nowUTC)
-                .ToListAsync();
+                .ToListAsync(ct);
 
             if (entities.Any())
             {
@@ -39,7 +40,7 @@ namespace ZillPillService.Application.Services
                         Describle = $"Пора принимать {entity.UserMedicinalProduct.MedicinalProduct.Name}, {entity.Quantity} шт.",
                         Title = "Напоминание"
                     };
-                    await _notifService.SendAll(topick, mesage);
+                    await _notifService.SendNotifAsync(topick, mesage, ct);
 
                     entity.IsSended = true;
                 }
@@ -47,6 +48,20 @@ namespace ZillPillService.Application.Services
                 _context.MedicationSheduller.UpdateRange(entities);
                 await _context.SaveChangesAsync();
             }
+        }
+
+        public async Task SendSystemMessgeAsync(string body, CancellationToken ct)
+        {
+            var titleToSend = "Системное сообщение";
+
+            var topick = $"system";
+            NotificationQuery mesage = new()
+            {
+                Type = Domain.Model.NotificationTypeEnum.System,
+                Describle = body,
+                Title = titleToSend
+            };
+            await _notifService.SendNotifAsync(topick, mesage, ct);
         }
     }
 }

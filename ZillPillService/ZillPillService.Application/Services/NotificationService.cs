@@ -7,13 +7,13 @@ namespace ZillPillService.Application.Services
 {
     public class NotificationService : INotificationService
     {
-        public async Task SendAll(string topick, NotificationQuery message)
+        public async Task SendNotifAsync(string topick, NotificationQuery message, CancellationToken ct)
         {
             // await SendToTopick(message.Type, message.Title, message.Describle);
-            await SendToTopick(topick, message.Title, message.Describle);
+            await SendToTopick(topick, message.Title, message.Describle, ct);
         }
 
-        private async Task SendToTopick(NotificationTypeEnum type, string Title, string Describle)
+        private async Task SendToTopick(NotificationTypeEnum type, string title, string Describle, CancellationToken ct)
         {
             string topic = String.Empty;
             switch (type)
@@ -31,7 +31,7 @@ namespace ZillPillService.Application.Services
                 Topic = topic,
                 Data = new Dictionary<string, string>()
                 {
-                    { "title", Title },
+                    { "title", title },
                     { "body", Describle },
                 },
                 Android = new AndroidConfig
@@ -39,17 +39,17 @@ namespace ZillPillService.Application.Services
                     Priority = Priority.High
                 }
             };
-            string response = await FirebaseMessaging.DefaultInstance.SendAsync(message);
+            string response = await FirebaseMessaging.DefaultInstance.SendAsync(message, ct);
         }
 
-        private async Task SendToTopick(string topic, string Title, string Describle)
+        private async Task SendToTopick(string topic, string title, string Describle, CancellationToken ct)
         {
             Message message = new()
             {
                 Topic = topic,
                 Data = new Dictionary<string, string>()
                 {
-                    { "title", Title },
+                    { "title", title },
                     { "body", Describle },
                 },
                 Android = new AndroidConfig
@@ -57,7 +57,7 @@ namespace ZillPillService.Application.Services
                     Priority = Priority.High
                 }
             };
-            string response = await FirebaseMessaging.DefaultInstance.SendAsync(message);
+            string response = await FirebaseMessaging.DefaultInstance.SendAsync(message, ct);
         }
     }
 }

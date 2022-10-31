@@ -18,7 +18,6 @@ namespace ZillPillMobileApp.Platforms.Android.FireBase
 
         void SendRegistrationToServer(string token)
         {
-            // Add custom implementation, as needed.
         }
     }
 }
