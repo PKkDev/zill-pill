@@ -7,6 +7,7 @@ namespace ZillPillMobileApp.Platforms.Android.FireBase
 {
     [Service]
     [IntentFilter(new[] { "com.google.firebase.INSTANCE_ID_EVENT" })]
+    [Obsolete]
     public class MyFirebaseIIDService : FirebaseInstanceIdService
     {
         public override void OnTokenRefresh()
