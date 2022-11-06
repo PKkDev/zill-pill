@@ -3,7 +3,7 @@
   <Class Name="ZillPillService.Application.Services.CheckShedullerService">
     <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAFAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAAgAAAABAAAAAgAAA=</HashCode>
       <FileName>Services\CheckShedullerService.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -34,13 +34,13 @@
       <FileName>Services\ErrorNotificationService.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="_configuration" />
-      <Field Name="_httpClientFactory" />
       <Field Name="_logger" />
+      <Field Name="_httpClientFactory" />
+      <Field Name="_configuration" />
     </ShowAsAssociation>
   </Class>
   <Class Name="ZillPillService.Application.Services.JwtGenerator" BaseTypeListCollapsed="true">
-    <Position X="6.5" Y="3.25" Width="1.5" />
+    <Position X="6.5" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
       <FileName>Services\JwtGenerator.cs</FileName>
@@ -51,7 +51,7 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="ZillPillService.Application.Services.MedicalProductService" BaseTypeListCollapsed="true">
-    <Position X="10.5" Y="2.75" Width="2.75" />
+    <Position X="11.75" Y="2.75" Width="2.75" />
     <TypeIdentifier>
       <HashCode>gAAEAAAAAAAABAAAAAAAAAAAAACAAiABgCABAAAAAAA=</HashCode>
       <FileName>Services\MedicalProductService.cs</FileName>
@@ -64,21 +64,21 @@
   <Class Name="ZillPillService.Application.Services.NotificationService" BaseTypeListCollapsed="true">
     <Position X="10.5" Y="1.25" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>gAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>gAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Services\NotificationService.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="ZillPillService.Application.Services.UserService" BaseTypeListCollapsed="true">
-    <Position X="8.75" Y="3.25" Width="1.5" />
+    <Position X="8.75" Y="3.5" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAABEAAhAAABgAAAAABAAAAAACAAAAAQAQAAAA=</HashCode>
       <FileName>Services\UserService.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="_clientFactory" />
       <Field Name="_context" />
       <Field Name="_jwtTokenService" />
+      <Field Name="_clientFactory" />
     </ShowAsAssociation>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
@@ -91,19 +91,19 @@
     <TypeIdentifier />
   </Interface>
   <Interface Name="ZillPillService.Infrastructure.ServicesContract.IJwtGenerator">
-    <Position X="8.75" Y="6" Width="1.5" />
+    <Position X="8.75" Y="6.5" Width="1.5" />
     <TypeIdentifier />
   </Interface>
   <Interface Name="ZillPillService.Infrastructure.ServicesContract.IMedicalProductService">
-    <Position X="3" Y="4.25" Width="2.75" />
+    <Position X="2.75" Y="4.5" Width="2.75" />
     <TypeIdentifier />
   </Interface>
   <Interface Name="ZillPillService.Infrastructure.ServicesContract.INotificationService">
-    <Position X="0.5" Y="5" Width="1.5" />
+    <Position X="0.5" Y="5.5" Width="1.5" />
     <TypeIdentifier />
   </Interface>
   <Interface Name="ZillPillService.Infrastructure.ServicesContract.IUserService">
-    <Position X="6" Y="4.75" Width="2.5" />
+    <Position X="6" Y="5" Width="2.5" />
     <TypeIdentifier />
   </Interface>
   <Interface Name="Microsoft.Extensions.Configuration.IConfiguration">
