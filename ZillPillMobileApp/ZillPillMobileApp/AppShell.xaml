@@ -49,6 +49,10 @@
         </StackLayout>
     </Shell.FlyoutFooter>
 
+    <FlyoutItem Title="UserTutorial">
+        <ShellContent Route="UserTutorial" ContentTemplate="{DataTemplate view:UserTutorialPage}" />
+    </FlyoutItem>
+
     <FlyoutItem Title="LogIn">
         <ShellContent Route="LogInPage" ContentTemplate="{DataTemplate view:AuthorizePage}" />
     </FlyoutItem>

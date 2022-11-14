@@ -97,7 +97,8 @@ namespace ZillPillMobileApp.MVVM.ViewModel
                 FirebaseMessaging.Instance.SubscribeToTopic($"system");
 #endif
 
-                await Shell.Current.GoToAsync("//Calendar");
+                await Shell.Current.GoToAsync("//UserTutorial");
+                //await Shell.Current.GoToAsync("//Calendar");
             }
             catch (Exception e)
             {

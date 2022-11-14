@@ -54,6 +54,7 @@
 
 	<ItemGroup>
 	  <None Remove="google-services.json" />
+	  <None Remove="Resources\Images\Tutorial\sheduller.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -77,10 +78,17 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiImage Include="Resources\Images\Tutorial\sheduller.png" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Update="MVVM\Popups\CountrySelectorPoup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="MVVM\Popups\TimePickerPopup.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="MVVM\View\UserTutorialPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Resources\Styles\CustomStyles.xaml">

@@ -25,22 +25,22 @@ public static class MauiProgram
         return builder.Build();
     }
 
-//    private static MauiAppBuilder RegisterFirebaseServices(this MauiAppBuilder builder)
-//    {
-//        builder.ConfigureLifecycleEvents(events =>
-//        {
-//#if IOS
-//            events.AddiOS(iOS => iOS.FinishedLaunching((app, launchOptions) => {
-//                CrossFirebase.Initialize(app, launchOptions, CreateCrossFirebaseSettings());
-//                return false;
-//            }));
-//#else
-//            events.AddAndroid(android => android.OnCreate((activity, state) =>
-//                CrossFirebase.Initialize(activity, state, CreateCrossFirebaseSettings())));
-//#endif
-//        });
+    //    private static MauiAppBuilder RegisterFirebaseServices(this MauiAppBuilder builder)
+    //    {
+    //        builder.ConfigureLifecycleEvents(events =>
+    //        {
+    //#if IOS
+    //            events.AddiOS(iOS => iOS.FinishedLaunching((app, launchOptions) => {
+    //                CrossFirebase.Initialize(app, launchOptions, CreateCrossFirebaseSettings());
+    //                return false;
+    //            }));
+    //#else
+    //            events.AddAndroid(android => android.OnCreate((activity, state) =>
+    //                CrossFirebase.Initialize(activity, state, CreateCrossFirebaseSettings())));
+    //#endif
+    //        });
 
-//        builder.Services.AddSingleton(_ => CrossFirebaseAuth.Current);
-//        return builder;
-//    }
+    //        builder.Services.AddSingleton(_ => CrossFirebaseAuth.Current);
+    //        return builder;
+    //    }
 }

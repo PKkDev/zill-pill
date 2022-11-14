@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ZillPillMobileApp.MVVM.View.UserTutorialPage"
+             Title="Руководство пользователя"
+             >
+
+    <ScrollView>
+
+        <StackLayout>
+
+            <Frame Margin="5">
+                <StackLayout>
+                    <Label Text="sheduller.png"/>
+                    <Image HeightRequest="250" Aspect="Fill" Source="sheduller.png"/>
+                    <Label Text="sheduller.png"/>
+                </StackLayout>
+            </Frame>
+
+            <Frame Margin="5">
+                <StackLayout>
+                    <Label Text="sheduller.png"/>
+                    <Image HeightRequest="250" Aspect="Fill" Source="sheduller.png"/>
+                    <Label Text="sheduller.png"/>
+                </StackLayout>
+            </Frame>
+
+            <Frame Margin="5">
+                <StackLayout>
+                    <Label Text="sheduller.png"/>
+                    <Image HeightRequest="250" Aspect="Fill" Source="sheduller.png"/>
+                    <Label Text="sheduller.png"/>
+                </StackLayout>
+            </Frame>
+
+            <Frame Margin="5">
+                <StackLayout>
+                    <Label Text="sheduller.png"/>
+                    <Image HeightRequest="250" Aspect="Fill" Source="sheduller.png"/>
+                    <Label Text="sheduller.png"/>
+                </StackLayout>
+            </Frame>
+
+            <Frame Margin="5">
+                <StackLayout>
+                    <Label Text="sheduller.png"/>
+                    <Image HeightRequest="250" Aspect="Fill" Source="sheduller.png"/>
+                    <Label Text="sheduller.png"/>
+                </StackLayout>
+            </Frame>
+
+            <FlexLayout JustifyContent="SpaceBetween" HeightRequest="40" Margin="5">
+                <Button Command="{Binding BackCommand }" Text="Мне не нравится"></Button>
+                <Button Command="{Binding AcceptCommand}" Text="Я всё понял"></Button>
+            </FlexLayout>
+
+        </StackLayout>
+
+    </ScrollView>
+
+    <!--<Image Source="sheduller.png"/>-->
+
+    <!--<CarouselView ItemsSource="{Binding TutorialItems}"
+                      IndicatorView="indicatorView"
+                      >
+
+            <CarouselView.ItemTemplate>
+                <DataTemplate>
+
+                    <StackLayout HeightRequest="300">
+
+                        <Frame Padding="5" Margin="5" HasShadow="True" BackgroundColor="#fff">
+                            <StackLayout>
+
+                                <Label Text="{Binding Title}"/>
+                                <Image HeightRequest="250" Aspect="Fill" Source="{Binding Image}"/>
+                                <Label Text="{Binding Description}"/>
+
+                            </StackLayout>
+                        </Frame>
+
+                    </StackLayout>-->
+
+    <!--<StackLayout BackgroundColor="Red" HeightRequest="700" >
+                        <Frame Margin="10" Padding="5" HeightRequest="600" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Yellow">
+                            <StackLayout>
+                                <Label Text="5555" Grid.Row="0" Grid.Column="0"/>
+                                <Image HeightRequest="550" Grid.Row="1" Grid.Column="0" Aspect="AspectFill" Source="{Binding Image}"/>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>-->
+
+    <!--<Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="15*"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Label Text="5555" Grid.Row="0" Grid.Column="0"/>
+                        <Image HeightRequest="550" Grid.Row="1" Grid.Column="0" Aspect="AspectFit" Source="{Binding Image}"/>
+
+                    </Grid>-->
+
+    <!--<Frame  Padding="5" Margin="5" BackgroundColor="Green">
+
+                        <Image Aspect="AspectFit" Source="{Binding Image}"/>
+                    </Frame>-->
+
+    <!--</DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+
+        <IndicatorView x:Name="indicatorView" Margin="5"
+                       IndicatorColor="LightGray"
+                       SelectedIndicatorColor="DarkGray"
+                       HorizontalOptions="Center" />-->
+
+
+</ContentPage>
