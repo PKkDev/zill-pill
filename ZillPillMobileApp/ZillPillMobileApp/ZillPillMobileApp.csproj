@@ -100,7 +100,6 @@
 	  <MauiImage Include="Resources\Images\Tutorial\medication_all_list_item.png" />
 	  <MauiImage Include="Resources\Images\Tutorial\medication_header.png" />
 	  <MauiImage Include="Resources\Images\Tutorial\medication_item.png" />
-	  <MauiImage Include="Resources\Images\Tutorial\medication_tool.png" />
 	  <MauiImage Include="Resources\Images\Tutorial\navigation.png" />
 	  <MauiImage Include="Resources\Images\Tutorial\sheduller_items.png" />
 	  <MauiImage Include="Resources\Images\Tutorial\sheduller_settings.png" />

@@ -14,6 +14,8 @@ namespace ZillPillMobileApp.MVVM.ViewModel
     {
         private UserDataService _userService => DependencyService.Get<UserDataService>();
 
+        private bool _isNewUser = true;
+
         private string _phone;
         public string Phone
         {
@@ -59,7 +61,11 @@ namespace ZillPillMobileApp.MVVM.ViewModel
                 var phone = await SecureStorage.GetAsync("phone");
                 var code = await SecureStorage.GetAsync("code");
                 if (!string.IsNullOrEmpty(phone) && !string.IsNullOrEmpty(code))
+                {
                     MainThread.BeginInvokeOnMainThread(() => { FingerLogInCommand.Execute(null); });
+                    _isNewUser = false;
+                }
+
             });
         }
 
@@ -68,6 +74,10 @@ namespace ZillPillMobileApp.MVVM.ViewModel
             LogInPocessing = true;
             try
             {
+                var phone = await SecureStorage.GetAsync("phone");
+                if (!string.IsNullOrEmpty(phone) && phone != Phone)
+                    _isNewUser = true;
+
                 await _userService.GetCodeForUserAsync(Phone);
                 VisualStateManager.GoToState(_gridBase, "CodeView");
             }
@@ -97,8 +107,10 @@ namespace ZillPillMobileApp.MVVM.ViewModel
                 FirebaseMessaging.Instance.SubscribeToTopic($"system");
 #endif
 
-                // await Shell.Current.GoToAsync("//UserTutorial");
-                await Shell.Current.GoToAsync("//Calendar");
+                if (_isNewUser)
+                    await Shell.Current.GoToAsync("//UserTutorial");
+                else
+                    await Shell.Current.GoToAsync("//Calendar");
             }
             catch (Exception e)
             {

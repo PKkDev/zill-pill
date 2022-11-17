@@ -97,6 +97,14 @@
 
         </Frame>
 
+        <Frame Margin="5,5" Padding="10" Style="{StaticResource CardFrame}">
+            
+            <Button Text="Просмотреть туториал" 
+                    Margin="0,10,0,0"
+                    Padding="5"
+                    Command="{Binding OpenTutorialCommand}"/>
+        </Frame>
+
     </StackLayout>
 
 </ContentPage>

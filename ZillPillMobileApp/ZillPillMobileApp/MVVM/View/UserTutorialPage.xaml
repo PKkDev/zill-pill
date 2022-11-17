@@ -44,7 +44,7 @@
                     <Label Text="На экране медецинские продукты пользователя"/>
                     <Label Text="Отображены все лекрственные препараты в библиотеке"/>
                     <Label Text="Каждый элемент списка имеет специально меню с дополнительными настроками"/>
-                    <Image HeightRequest="200" Aspect="Fill" Source="medication_item.png"/>
+                    <Image HeightRequest="120" Aspect="Fill" Source="medication_item.png"/>
                     <Label Text="В верхней части странце расположено меню, через которое осуществляется переход на страницу всех препаратов для последующего добавления"/>
                     <Image HeightRequest="50" Aspect="Fill" Source="medication_header.png"/>
 
@@ -71,10 +71,12 @@
                 </StackLayout>
             </Frame>
 
-            <FlexLayout JustifyContent="SpaceBetween" HeightRequest="40" Margin="5">
-                <Button Command="{Binding BackCommand }" Text="Мне не нравится"></Button>
-                <Button Command="{Binding AcceptCommand}" Text="Я всё понял"></Button>
-            </FlexLayout>
+            <Frame Margin="5" Padding="10">
+                <FlexLayout JustifyContent="SpaceBetween" HeightRequest="40" Margin="0">
+                    <Button Command="{Binding BackCommand }" Text="Мне не нравится"></Button>
+                    <Button Command="{Binding AcceptCommand}" Text="Я всё понял"></Button>
+                </FlexLayout>
+            </Frame>
 
         </StackLayout>
 

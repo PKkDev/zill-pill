@@ -11,6 +11,8 @@ namespace ZillPillMobileApp.MVVM.ViewModel
 
         public RelyCommand OnShowSettingsUI { get; set; }
 
+        public RelyCommand OpenTutorialCommand { get; set; }
+
         private string _networkState;
         public string NetworkState
         {
@@ -22,6 +24,8 @@ namespace ZillPillMobileApp.MVVM.ViewModel
         public HelpPageViewModel()
         {
             OnShowSettingsUI = new RelyCommand((param) => AppInfo.ShowSettingsUI());
+
+            OpenTutorialCommand = new RelyCommand(async (param) => await Shell.Current.GoToAsync("//UserTutorial"));
 
             Connectivity.ConnectivityChanged += OnConnectivityChanged;
             CheckNetwork = new RelyCommand((param) => CheckConnection());
