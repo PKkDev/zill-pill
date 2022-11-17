@@ -11,41 +11,63 @@
 
             <Frame Margin="5">
                 <StackLayout>
-                    <Label Text="sheduller.png"/>
-                    <Image HeightRequest="250" Aspect="Fill" Source="sheduller.png"/>
-                    <Label Text="sheduller.png"/>
+                    <Label Text="Для быстрой навигции по пиложению используйте меню навигации"/>
+                    <Image HeightRequest="50" Aspect="Fill" Source="navigation.png"/>
                 </StackLayout>
             </Frame>
 
             <Frame Margin="5">
                 <StackLayout>
-                    <Label Text="sheduller.png"/>
-                    <Image HeightRequest="250" Aspect="Fill" Source="sheduller.png"/>
-                    <Label Text="sheduller.png"/>
+                    <Label Text="На экране календарь"/>
+                    <Label Text="Выберите дату для просмотра уведомлений за этот день"/>
+                    <Image HeightRequest="70" Aspect="Fill" Source="calendar_dates.png"/>
+                    <Label Text="Сами уведомления выглядят так"/>
+                    <Image HeightRequest="100" Aspect="Fill" Source="calendar_items.png"/>
+                    <Label Text="Для подтверждения приёма нажмите на элемент списка"/>
                 </StackLayout>
             </Frame>
 
             <Frame Margin="5">
                 <StackLayout>
-                    <Label Text="sheduller.png"/>
-                    <Image HeightRequest="250" Aspect="Fill" Source="sheduller.png"/>
-                    <Label Text="sheduller.png"/>
+                    <Label Text="На экране детализация"/>
+                    <Label Text="Можно посмотреть информацию по общим харктеристикам"/>
+                    <Image HeightRequest="80" Aspect="Fill" Source="detail_charakteristic.png"/>
+                    <Label Text="Можно посмотреть информацию по выданной лицензии"/>
+                    <Image HeightRequest="80" Aspect="Fill" Source="detail_licenze.png"/>
+                    <Label Text="Можно посмотреть информацию по формам выпуск лекарственного препарата"/>
+                    <Image HeightRequest="80" Aspect="Fill" Source="detail_relezes.png"/>
                 </StackLayout>
             </Frame>
 
             <Frame Margin="5">
                 <StackLayout>
-                    <Label Text="sheduller.png"/>
-                    <Image HeightRequest="250" Aspect="Fill" Source="sheduller.png"/>
-                    <Label Text="sheduller.png"/>
+                    <Label Text="На экране медецинские продукты пользователя"/>
+                    <Label Text="Отображены все лекрственные препараты в библиотеке"/>
+                    <Label Text="Каждый элемент списка имеет специально меню с дополнительными настроками"/>
+                    <Image HeightRequest="200" Aspect="Fill" Source="medication_item.png"/>
+                    <Label Text="В верхней части странце расположено меню, через которое осуществляется переход на страницу всех препаратов для последующего добавления"/>
+                    <Image HeightRequest="50" Aspect="Fill" Source="medication_header.png"/>
+
                 </StackLayout>
             </Frame>
 
             <Frame Margin="5">
                 <StackLayout>
-                    <Label Text="sheduller.png"/>
-                    <Image HeightRequest="250" Aspect="Fill" Source="sheduller.png"/>
-                    <Label Text="sheduller.png"/>
+                    <Label Text="На экране медецинские продукты"/>
+                    <Label Text="Отображён динамический список всех лекарственных препаратов,добавленных в систему"/>
+                    <Image HeightRequest="150" Aspect="Fill" Source="medication_all_list_item.png"/>
+                    <Label Text="Для более быстрого и удобного поиска релзована система фильтров, позволяющая гибко настроить поиск лекарств"/>
+                    <Image HeightRequest="250" Aspect="Fill" Source="filters_item.png"/>
+                </StackLayout>
+            </Frame>
+
+            <Frame Margin="5">
+                <StackLayout>
+                    <Label Text="На экране напоминания"/>
+                    <Label Text="В верхней части представлены общие опции для настройки напоминаний"/>
+                    <Image HeightRequest="200" Aspect="Fill" Source="sheduller_settings.png"/>
+                    <Label Text="Изменяемый список напоминаний для каждого дня. Для каждого элемента нужно указать время приёма и дозировку"/>
+                    <Image HeightRequest="150" Aspect="Fill" Source="sheduller_items.png"/>
                 </StackLayout>
             </Frame>
 

@@ -63,7 +63,7 @@
 
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
 
-        <Tab Title="Настроки" Icon="gear.svg" Shell.NavBarIsVisible="False">
+        <Tab Title="Настройки" Icon="gear.svg" Shell.NavBarIsVisible="False">
 
             <ShellContent Title="Пользователь"
                           ContentTemplate="{DataTemplate aboutView:UserPage}" />

@@ -55,7 +55,7 @@
 
         </Frame>
 
-        <Frame Margin="0" Padding="10" Style="{StaticResource CardFrame}">
+        <Frame Margin="5,0" Padding="10" Style="{StaticResource CardFrame}">
 
             <VerticalStackLayout>
 
@@ -67,7 +67,7 @@
 
                 <BoxView BackgroundColor="Transparent" HeightRequest="5"></BoxView>
 
-                <Label Text="Курсовой проект по дисциплине 'Современные методы РиП ПК'" VerticalOptions="Center"  HorizontalOptions="Center" />
+                <Label Text="лабораторный практикум по дисциплине 'Современные методы РиП ПК'" VerticalOptions="Center"  HorizontalOptions="Center" />
 
                 <BoxView BackgroundColor="Transparent" HeightRequest="10"></BoxView>
 

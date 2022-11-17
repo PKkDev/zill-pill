@@ -54,7 +54,20 @@
 
 	<ItemGroup>
 	  <None Remove="google-services.json" />
+	  <None Remove="Resources\Images\Tutorial\calendar_dates.png" />
+	  <None Remove="Resources\Images\Tutorial\calendar_items.png" />
+	  <None Remove="Resources\Images\Tutorial\detail_charakteristic.png" />
+	  <None Remove="Resources\Images\Tutorial\detail_licenze.png" />
+	  <None Remove="Resources\Images\Tutorial\detail_relezes.png" />
+	  <None Remove="Resources\Images\Tutorial\filters_item.png" />
+	  <None Remove="Resources\Images\Tutorial\medication_all_list_item.png" />
+	  <None Remove="Resources\Images\Tutorial\medication_header.png" />
+	  <None Remove="Resources\Images\Tutorial\medication_item.png" />
+	  <None Remove="Resources\Images\Tutorial\medication_tool.png" />
+	  <None Remove="Resources\Images\Tutorial\navigation.png" />
 	  <None Remove="Resources\Images\Tutorial\sheduller.png" />
+	  <None Remove="Resources\Images\Tutorial\sheduller_items.png" />
+	  <None Remove="Resources\Images\Tutorial\sheduller_settings.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -78,7 +91,19 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiImage Include="Resources\Images\Tutorial\sheduller.png" />
+	  <MauiImage Include="Resources\Images\Tutorial\calendar_dates.png" />
+	  <MauiImage Include="Resources\Images\Tutorial\calendar_items.png" />
+	  <MauiImage Include="Resources\Images\Tutorial\detail_charakteristic.png" />
+	  <MauiImage Include="Resources\Images\Tutorial\detail_licenze.png" />
+	  <MauiImage Include="Resources\Images\Tutorial\detail_relezes.png" />
+	  <MauiImage Include="Resources\Images\Tutorial\filters_item.png" />
+	  <MauiImage Include="Resources\Images\Tutorial\medication_all_list_item.png" />
+	  <MauiImage Include="Resources\Images\Tutorial\medication_header.png" />
+	  <MauiImage Include="Resources\Images\Tutorial\medication_item.png" />
+	  <MauiImage Include="Resources\Images\Tutorial\medication_tool.png" />
+	  <MauiImage Include="Resources\Images\Tutorial\navigation.png" />
+	  <MauiImage Include="Resources\Images\Tutorial\sheduller_items.png" />
+	  <MauiImage Include="Resources\Images\Tutorial\sheduller_settings.png" />
 	</ItemGroup>
 
 	<ItemGroup>
