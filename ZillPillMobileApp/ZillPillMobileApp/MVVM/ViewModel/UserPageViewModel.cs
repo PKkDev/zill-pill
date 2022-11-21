@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Text.RegularExpressions;
 using ZillPillMobileApp.Core;
 using ZillPillMobileApp.Domain.Query.User;
 using ZillPillMobileApp.Infrastructure.Services;
@@ -38,9 +39,21 @@ namespace ZillPillMobileApp.MVVM.ViewModel
             UpdateUserCommand = new(
                 async (param) =>
                 {
-                    UpdateUserDetailQuery query = new(UserDetail.Email, UserDetail.FirstName);
-                    await _userService.UpdateUserDetailAsync(query);
-                    IsRefreshing = true;
+                    try
+                    {
+                        string pattern = @"^(?("")(""[^""]+?""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
+                                        @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-\w]*[0-9a-z]*\.)+[a-z0-9]{2,17}))$";
+                        if (!Regex.IsMatch(UserDetail.Email.Trim(), pattern, RegexOptions.IgnoreCase))
+                            throw new Exception("некорректный email");
+
+                        UpdateUserDetailQuery query = new(UserDetail.Email.Trim(), UserDetail.FirstName.Trim());
+                        await _userService.UpdateUserDetailAsync(query);
+                        IsRefreshing = true;
+                    }
+                    catch (Exception e)
+                    {
+                        MessagingCenter.Send<ErrorMessage>(new ErrorMessage(e.Message), "Error");
+                    }
                 },
                 (param) =>
                  {

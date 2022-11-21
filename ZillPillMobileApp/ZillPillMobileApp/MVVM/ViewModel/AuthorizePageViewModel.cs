@@ -3,6 +3,7 @@ using Plugin.Fingerprint.Abstractions;
 using ZillPillMobileApp.Core;
 using ZillPillMobileApp.Infrastructure.Services;
 using ZillPillMobileApp.MVVM.Model;
+using System.Text.RegularExpressions;
 
 #if ANDROID
 using Firebase.Messaging;
@@ -74,6 +75,15 @@ namespace ZillPillMobileApp.MVVM.ViewModel
             LogInPocessing = true;
             try
             {
+                var phoneToCheck = Phone;
+                if (Phone.StartsWith("+7"))
+                    phoneToCheck = Phone.Replace("+7", "8");
+                Regex reg = new(@"[0-9]{11}");
+                var isMatch = reg.IsMatch(phoneToCheck);
+
+                if (!isMatch)
+                    throw new Exception("некорректный номер телефона");
+
                 var phone = await SecureStorage.GetAsync("phone");
                 if (!string.IsNullOrEmpty(phone) && phone != Phone)
                     _isNewUser = true;

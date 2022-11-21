@@ -1,6 +1,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ZillPillMobileApp.MVVM.View.AuthorizePage"
+             xmlns:entryBeh="clr-namespace:ZillPillMobileApp.Behaviors.EntryBeh"
              Title="AuthorizePage"
              Shell.NavBarIsVisible="False"
              Shell.FlyoutBehavior="Disabled"
@@ -61,7 +62,11 @@
 
 
                     <Frame Padding="0" HasShadow="True" BorderColor="#fff" HeightRequest="40" Margin="-15,0,0,0" HorizontalOptions="FillAndExpand">
-                        <Entry Margin="20,0,0,0" Text="{Binding Phone}" Keyboard="Telephone" Placeholder="Phone"/>
+                        <Entry Margin="20,0,0,0" Text="{Binding Phone}" Keyboard="Telephone" Placeholder="Phone">
+                            <Entry.Behaviors>
+                                <entryBeh:EntryLengthValidator></entryBeh:EntryLengthValidator>
+                            </Entry.Behaviors>
+                        </Entry>
                     </Frame>
 
                 </StackLayout>
