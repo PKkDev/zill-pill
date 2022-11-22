@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.Text;
+using ZillPillMobileApp.Domain.DTO.Error;
 using ZillPillMobileApp.Domain.DTO.User;
 using ZillPillMobileApp.Domain.Query.User;
 using ZillPillMobileApp.MVVM.Model;
@@ -30,7 +31,10 @@ namespace ZillPillMobileApp.Infrastructure.Services
             if (!resp.IsSuccessStatusCode)
             {
                 var response = await resp.Content.ReadAsStringAsync();
-                throw new Exception(response);
+
+                HttpErrorMessage des = JsonConvert.DeserializeObject<HttpErrorMessage>(response);
+                if (des != null) throw new Exception(des.Message);
+                else throw new Exception(response);
             }
         }
 
@@ -44,7 +48,11 @@ namespace ZillPillMobileApp.Infrastructure.Services
             var response = await resp.Content.ReadAsStringAsync();
 
             if (!resp.IsSuccessStatusCode)
-                throw new Exception(response);
+            {
+                HttpErrorMessage des = JsonConvert.DeserializeObject<HttpErrorMessage>(response);
+                if (des != null) throw new Exception(des.Message);
+                else throw new Exception(response);
+            }
 
             return JsonConvert.DeserializeObject<LoginResponseDto>(response);
         }

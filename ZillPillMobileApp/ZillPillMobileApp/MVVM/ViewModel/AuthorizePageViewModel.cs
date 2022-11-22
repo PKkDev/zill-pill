@@ -47,7 +47,6 @@ namespace ZillPillMobileApp.MVVM.ViewModel
         public AuthorizePageViewModel(Microsoft.Maui.Controls.Grid gridBase)
         {
             Phone = "89372174165";
-            Code = "sdasd";
 
             GetCodeCommand = new RelyCommand(async (param) => await GetCodeAsync());
             CheckCodeCommand = new RelyCommand(async (param) => await CheckCodeAsync());

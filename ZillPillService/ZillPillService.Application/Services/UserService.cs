@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.EntityFrameworkCore;
 using ZillPillService.Domain.DTO.User;
 using ZillPillService.Domain.Exceptions;
 using ZillPillService.Domain.Query.User;
@@ -58,20 +59,20 @@ namespace ZillPillService.Application.Services
             _context.User.Update(user);
             await _context.SaveChangesAsync(ct);
 
-            //var client = _clientFactory.CreateClient("smsAreaApi");
-            //var message = $"код для доступа: {code}";
-            //Dictionary<string, string> queryParam = new()
-            //{
-            //    {"number", $"{phone}"},
-            //    {"text", $"{message}"},
-            //    {"sign", "SMS Aero"}
-            //};
-            //var uri = QueryHelpers.AddQueryString(client.BaseAddress.AbsoluteUri, queryParam);
-            //var request = new HttpRequestMessage(HttpMethod.Get, uri);
-            //var response = await client.SendAsync(request, ct);
-            //var responseMessage = await response.Content.ReadAsStringAsync();
-            //if (!response.IsSuccessStatusCode)
-            //    throw new ApiException("ошибка при отправке sms");
+            var client = _clientFactory.CreateClient("smsAreaApi");
+            var message = $"код для доступа: {code}";
+            Dictionary<string, string> queryParam = new()
+            {
+                {"number", $"{phone}"},
+                {"text", $"{message}"},
+                {"sign", "SMS Aero"}
+            };
+            var uri = QueryHelpers.AddQueryString(client.BaseAddress.AbsoluteUri, queryParam);
+            var request = new HttpRequestMessage(HttpMethod.Get, uri);
+            var response = await client.SendAsync(request, ct);
+            var responseMessage = await response.Content.ReadAsStringAsync();
+            if (!response.IsSuccessStatusCode)
+                throw new ApiException("ошибка при отправке sms");
         }
 
         /// <summary>
@@ -90,8 +91,8 @@ namespace ZillPillService.Application.Services
             if (user == null)
                 throw new ApiException("пользователей не найден");
 
-            //if (code != user.Code)
-            //    throw new ApiException("код не совпадает");
+            if (code != user.Code)
+                throw new ApiException("код не совпадает");
 
             return await Authorize(user);
         }

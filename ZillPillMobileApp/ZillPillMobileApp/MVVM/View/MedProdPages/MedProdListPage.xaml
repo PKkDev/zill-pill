@@ -49,7 +49,7 @@
                 <Entry Text="{Binding Filter.ChemicalName}" Placeholder="парацетомол"/>
 
                 <HorizontalStackLayout>
-                    <Label VerticalOptions="Center" Text="Зарегестрированный"/>
+                    <Label VerticalOptions="Center" Text="Зарегистрированный"/>
                     <Switch VerticalOptions="Center" Margin="10,0" IsToggled="{Binding Filter.WithCertificate}"/>
                 </HorizontalStackLayout>
 
