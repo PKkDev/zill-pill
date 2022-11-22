@@ -46,7 +46,7 @@
                         <Grid RowDefinitions="*,*" ColumnDefinitions="*,*">
 
                             <Label Grid.Row="0" Grid.Column="0" VerticalTextAlignment="Center" 
-                                   Text="Систмные уведомления"/>
+                                   Text="Системные уведомления"/>
                             <Switch x:Name="SystemNotifSwitch" Grid.Row="0" Grid.Column="1" 
                                     Toggled="SystemNotifSwitch_Toggled"/>
 
